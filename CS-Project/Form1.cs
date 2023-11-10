@@ -19,7 +19,22 @@ namespace CS_Project
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            "M"
+
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

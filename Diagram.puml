@@ -12,10 +12,10 @@ class Client <<entity>> {
 }
 
 class ClientManager <<repository>> {
-    - createPerson()
-    - readPerson()
-    - updatePerson()
-    - deletePerson()
+    - createClient()
+    - readClient()
+    - updateClient()
+    - deleteClient()
 }
 
 class Commandes <<entity>> {
@@ -27,10 +27,10 @@ class Commandes <<entity>> {
 }
 
 class CommandesManager <<repository>> {
-    - createCmd()
-    - readCmd()
-    - updateCmd()
-    - deleteCmd()
+    - createCommand()
+    - readCommand()
+    - updateCommand()
+    - deleteCommand()
 }
 
 class LigneCmd <<entity>> {
@@ -51,18 +51,18 @@ class Produits <<entity>> {
 }
 
 class ProduitsManager <<repository>> {
-    - createPerson()
-    - readPerson()
-    - updatePerson()
-    - deletePerson()
+    - createProduct()
+    - readProduct()
+    - updateProduct()
+    - deleteProduct()
 }
 
-Client "1  " -- "0..*  " Commandes
-Commandes "1  " -- "1..*  " LigneCmd
-LigneCmd "1..*  " -- "1..*  " Produits
+Client "1  " <-- "0..*  " Commandes
+Commandes "1  " <--> "1..*  " LigneCmd
+LigneCmd "1..*  " --> "1..*  " Produits
 
-ClientManager "1..*" - Client
-CommandesManager "1..*" - Commandes
-ProduitsManager "1..*" - Produits
+ClientManager "1..*" -> Client
+CommandesManager "1..*" -> Commandes
+ProduitsManager "1..*" -> Produits
 
 @enduml
