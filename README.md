@@ -1,4 +1,4 @@
-## 1 - DESCRIPTION DE L’ENTREPRISE MENAGELEC.
+## 1 - Description de l'entreprise Menagelec.
 
 L’entreprise MENAGELEC est une SARL créée par deux techniciens de l’électroménager, M FOURNIER
 Michel et M HURIER Alain. Elle se situe dans le secteur « Dépannage et entretien des appareils 
