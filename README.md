@@ -1,4 +1,4 @@
-1 - DESCRIPTION DE L’ENTREPRISE MENAGELEC.
+## 1 - DESCRIPTION DE L’ENTREPRISE MENAGELEC.
 
 L’entreprise MENAGELEC est une SARL créée par deux techniciens de l’électroménager, M FOURNIER
 Michel et M HURIER Alain. Elle se situe dans le secteur « Dépannage et entretien des appareils 
@@ -11,7 +11,7 @@ de partenaires externes (les SAV de grands groupes comme Darty, But, Carrefour,�
 dans plusieurs hangars afin de stocker les pièces.
 
 
-2 - REORGANISATION
+## 2 - REORGANISATION
 
 L’activité de vente de pièces détachées pour appareils électroménagers continue de progresser 
 fortement. Pratiquement aucun outil n’est utilisé par les deux associés pour gérer les produits du 
@@ -21,7 +21,7 @@ des stocks, facturation, colisage, expédition, SAV, mise au catalogue,…). Cel
 l’embauche de personnel nécessaire alors que l’entreprise a les moyens de financer deux employés.
 
 
-3 - ANALYSE DE L’EXISTANT
+## 3 - ANALYSE DE L’EXISTANT
 
 S’il existe un site e-commerce pour la vente des produits en ligne, il n’y a aucun suivi possible des 
 commandes passées par l’intermédiaire de celui-ci. Les associés n’ont aucun processus automatisé qui 
@@ -30,7 +30,7 @@ impossible de générer automatiquement la liste de colisage. Toutes ces opérat
 réalisées manuellement.
 
 
-4 - BESOINS D’EVOLUTION
+## 4 - BESOINS D’EVOLUTION
 
 M Fournier a besoin d’un logiciel qui lui permette de gérer la paiement des commandes et les 
 expéditions correspondantes. 
@@ -39,7 +39,7 @@ Une commande ne concerne qu’un seul client
 Une commande non payée ne peut pas être expédiée
 
 
-5 - RESSOURCES UTILES AU PROJET
+## 5 - RESSOURCES UTILES AU PROJET
 
 Les ressources sont situées dans le dossier « PPE2 » dans le dossier des ressources habituelles.
 Ce dossier contient :
@@ -48,7 +48,7 @@ Ce dossier contient :
 - Les images des produits : dossier « imagesProduit »
 
 
-6 - CAHIER DES CHARGES
+## 6 - CAHIER DES CHARGES
 
 - La phase d’analyse doit conduire à l’élaboration d’une documentation (diagramme de classes par 
 exemple) suffisamment détaillée qui permettra une consultation ultérieure dans le cadre d’une 
@@ -69,7 +69,7 @@ vert)
 - la génération de fichiers PDF sera mise en place avec la classe itextsharp
 
   
-7 - ANALYSE FONCTIONNELLE
+## 7 - ANALYSE FONCTIONNELLE
   
 Voici les fonctionnalités à développer organisées par module.
 Pour une meilleure compréhension, vous pouvez en parallèle prendre connaissance de la partie 
@@ -151,13 +151,73 @@ Ainsi, une table « statistiques » doit contenir le nombre de commandes à exp�
 être mis à jour via un trigger. Lorsqu’une commande a été payée, le nombre de commandes à expédier 
 doit être incrémenté. Lorsqu’une commande a été expédiée, le nombre de commandes à expédier doit 
 être décrémenté.
-8 - TEST DE L’APPLICATION
+
+
+## 8 - TEST DE L’APPLICATION
+
 Une fiche de tests unitaires doit être réalisée au fur et à mesure du développement. Une fonctionnalité 
 est créée, vous prévoyez un test sur la fiche de test. Ainsi, une fois votre projet terminé, tous les tests 
 figureront sur la fiche. Ce document est indispensable pour les CCF.
-9 - COMPETENCES MOBILISEES
+
+
+## 9 - COMPETENCES MOBILISEES
+
  La réalisation de ce projet doit permettre de couvrir au minimum les compétences suivantes 
 (c’est indispensable pour le CCF de fin d’année)
 o Scripting C# en utilisant l’IDE Visual Studio (version Express suffisante)
 o Programmation événementielle
 o Ajout de références à un projet et intégration pour assurer la portabilité de l’application
+o liaison d’une application c# avec une base de données Mysql
+o réalisation de classes métiers
+o réalisation de formulaires (Win Form)
+o utilisation de composant de formulaire non liés à une base de données
+o utilisation de composants de formulaire liés à la base de données (ex : combo box, 
+datagridview,…)
+o interaction avec une base de données Mysql
+o toutes opérations portant sur la structure d’une table (ajout d’un champ, modification 
+de son nom, de son type, etc)
+o toutes opérations portant sur la lecture d’une table (SELECT…)
+o toutes opérations de modifications, insertions, suppression sur les données d’une table
+o réalisation de triggers
+o réalisation de procédures stockées et exploitation
+o réalisation d’une fiche de tests unitaires
+
+
+## 10 - LIVRABLE
+
+La solution à livrer au client doit être totalement intégrée et pleinement fonctionnelle (condition 
+obligatoire pour le CCF)
+
+
+## 11 - AIDE ORGANISATIONNELLE POUR LA REALISATION DU PROJET
+
+Voici quelques conseils que je vous invite fortement à suivre pour être plus efficace.
+Ne tentez pas de tout réaliser. Il faut découper les différents éléments d’un même formulaire lorsqu’ils 
+sont nombreux.
+Etapes de réalisation :
+ Rechercher comment utiliser une bdd Mysql avec C# (nous utiliserons la connexion en dur, c'està-dire codée par nous même sans utiliser le gestionnaire de connexion) => cela permet d’assurer 
+la compatibilité du projet avec Visual studio express.
+ Formulaire de connexion (fiche de tests unitaires)
+ Menu (fiche de tests unitaires)
+ Gestion des commandes (réaliser les éléments numérotés (voir interface graphique) dans l’ordre 
+de leur numérotation.) (fiche de tests unitaires à alimenter après chaque fonctionnalité ajoutée)
+
+
+## 12 - CHARTE GRAPHIQUE
+
+Police utilisée : Microsoft Sans Serif; 14,25pt
+
+Taille de police :
+- Titre de formulaire : 14,25pt
+- Nom des rubriques (Liste des commandes, Recherche spécifiques,…) : 12pt
+- Autres éléments textuels : 8,25pt
+  
+Titres, nom des rubriques, autres éléments textuels : blanc
+Couleur de fond : utiliser l’élément « background.png » du dossier « «imagesInterfaceGraphique »
+
+
+## 13 - INTERFACE GRAPHIQUE
+
+Eléments communs à toutes les fenêtres
+Le logo doit apparaître dans toutes les fenêtres à gauche de la barre de titre.
+Les fenêtres ne doivent pas être redimensionnables
