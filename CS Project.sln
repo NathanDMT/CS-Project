@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "menagelec_client-lourd", "menagelec_client-lourd\menagelec_client-lourd.csproj", "{5C900C10-9E5D-43A2-ADAC-768DEFDA56C0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CS Project", "CS Project\CS Project.csproj", "{4BE64CE0-3682-49C9-97C4-F1183E279AA6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5C900C10-9E5D-43A2-ADAC-768DEFDA56C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5C900C10-9E5D-43A2-ADAC-768DEFDA56C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5C900C10-9E5D-43A2-ADAC-768DEFDA56C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5C900C10-9E5D-43A2-ADAC-768DEFDA56C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BE64CE0-3682-49C9-97C4-F1183E279AA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BE64CE0-3682-49C9-97C4-F1183E279AA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BE64CE0-3682-49C9-97C4-F1183E279AA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BE64CE0-3682-49C9-97C4-F1183E279AA6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {E0D5B4BE-59BB-45F5-8897-72452FF482AF}
+		SolutionGuid = {A60C2A36-C961-40ED-B083-86572A94469D}
 	EndGlobalSection
 EndGlobal
