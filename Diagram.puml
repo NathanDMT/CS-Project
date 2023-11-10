@@ -1,0 +1,43 @@
+@startuml
+class Client {
+- idCient: int
+- civilite: str(10)
+- nom: str(100)
+- prenom: str(100)
+- adresse: str(255)
+- ville: str(150)
+- cp: str(8)
+- mail: str(255)
+- tel: str(15)
+}
+
+
+class LigneCmd {
+- produit: int
+- commande: int
+- quantite: int
+}
+
+class Commandes {
+- id: int
+- date: date
+- estPayee: tinyint(1)
+- estExpediee: tinyint(1)
+- client: int
+}
+
+class Produits {
+- idProduit: int
+- designation: text
+- description: text
+- dateAjout: datetime
+- qte: int
+- prix: decimal(6.2)
+- fichierImage: str(255)
+- pk_fournisseur: int
+}
+
+Client "1" <|--|> "0..*" Commandes
+LigneCmd "0..*" -- "1" Commandes
+LigneCmd "0..*" -- "0..*" Produits
+@enduml
