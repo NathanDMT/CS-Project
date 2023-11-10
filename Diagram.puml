@@ -11,19 +11,18 @@ class Client {
 - tel: str(15)
 }
 
-
-class LigneCmd {
-- produit: int
-- commande: int
-- quantite: int
-}
-
 class Commandes {
 - id: int
 - date: date
 - estPayee: tinyint(1)
 - estExpediee: tinyint(1)
 - client: int
+}
+
+class LigneCmd {
+- produit: int
+- commande: int
+- quantite: int
 }
 
 class Produits {
@@ -37,7 +36,7 @@ class Produits {
 - pk_fournisseur: int
 }
 
-Client "1" <|--|> "0..*" Commandes
-LigneCmd "0..*" -- "1" Commandes
-LigneCmd "0..*" -- "0..*" Produits
+Client "1  " <--> "0..*  " Commandes
+Commandes "1  " <-- "0..*  " LigneCmd
+LigneCmd "1..*  " --> "1..*  " Produits
 @enduml
