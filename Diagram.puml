@@ -1,42 +1,68 @@
 @startuml
-class Client {
-- idCient: int
-- civilite: str(10)
-- nom: str(100)
-- prenom: str(100)
-- adresse: str(255)
-- ville: str(150)
-- cp: str(8)
-- mail: str(255)
-- tel: str(15)
+class Client <<entity>> {
+    - idCient: int
+    - civilite: str(10)
+    - nom: str(100)
+    - prenom: str(100)
+    - adresse: str(255)
+    - ville: str(150)
+    - cp: str(8)
+    - mail: str(255)
+    - tel: str(15)
 }
 
-class Commandes {
-- id: int
-- date: date
-- estPayee: tinyint(1)
-- estExpediee: tinyint(1)
-- client: int
+class ClientManager <<repository>> {
+    - createPerson()
+    - readPerson()
+    - updatePerson()
+    - deletePerson()
 }
 
-class LigneCmd {
-- produit: int
-- commande: int
-- quantite: int
+class Commandes <<entity>> {
+    - id: int
+    - date: date
+    - estPayee: tinyint(1)
+    - estExpediee: tinyint(1)
+    - client: int
 }
 
-class Produits {
-- idProduit: int
-- designation: text
-- description: text
-- dateAjout: datetime
-- qte: int
-- prix: decimal(6.2)
-- fichierImage: str(255)
-- pk_fournisseur: int
+class CommandesManager <<repository>> {
+    - createCmd()
+    - readCmd()
+    - updateCmd()
+    - deleteCmd()
 }
 
-Client "1  " <--> "0..*  " Commandes
-Commandes "1  " <-- "0..*  " LigneCmd
-LigneCmd "1..*  " --> "1..*  " Produits
+class LigneCmd <<entity>> {
+    - produit: int
+    - commande: int
+    - quantite: int
+}
+
+class Produits <<entity>> {
+    - idProduit: int
+    - designation: text
+    - description: text
+    - dateAjout: datetime
+    - qte: int
+    - prix: decimal(6.2)
+    - fichierImage: str(255)
+    - pk_fournisseur: int
+}
+
+class ProduitsManager <<repository>> {
+    - createPerson()
+    - readPerson()
+    - updatePerson()
+    - deletePerson()
+}
+
+Client "1  " -- "0..*  " Commandes
+Commandes "1  " -- "1..*  " LigneCmd
+LigneCmd "1..*  " -- "1..*  " Produits
+
+ClientManager "1..*" - Client
+CommandesManager "1..*" - Commandes
+ProduitsManager "1..*" - Produits
+
 @enduml
