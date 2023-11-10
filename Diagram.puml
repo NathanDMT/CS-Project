@@ -1,6 +1,6 @@
 @startuml
-class Client <<entity>> {
-    - idCient: int
+class client <<entity>> {
+    - idClient: int
     - civilite: str(10)
     - nom: str(100)
     - prenom: str(100)
@@ -11,14 +11,14 @@ class Client <<entity>> {
     - tel: str(15)
 }
 
-class ClientManager <<repository>> {
+class clientManager <<repository>> {
     - createClient()
     - readClient()
     - updateClient()
     - deleteClient()
 }
 
-class Commandes <<entity>> {
+class commandes <<entity>> {
     - id: int
     - date: date
     - estPayee: tinyint(1)
@@ -26,20 +26,20 @@ class Commandes <<entity>> {
     - client: int
 }
 
-class CommandesManager <<repository>> {
+class commandsManager <<repository>> {
     - createCommand()
     - readCommand()
     - updateCommand()
     - deleteCommand()
 }
 
-class LigneCmd <<entity>> {
+class ligneCmd <<entity>> {
     - produit: int
     - commande: int
     - quantite: int
 }
 
-class Produits <<entity>> {
+class produits <<entity>> {
     - idProduit: int
     - designation: text
     - description: text
@@ -50,19 +50,19 @@ class Produits <<entity>> {
     - pk_fournisseur: int
 }
 
-class ProduitsManager <<repository>> {
+class productsManager <<repository>> {
     - createProduct()
     - readProduct()
     - updateProduct()
     - deleteProduct()
 }
 
-Client "1  " <-- "0..*  " Commandes
-Commandes "1  " <--> "1..*  " LigneCmd
-LigneCmd "1..*  " --> "1..*  " Produits
+client "1  " <-- "0..*  " commandes
+commandes "1  " -- "1..*  " ligneCmd
+ligneCmd "1..*  " -- "1..*  " produits
 
-ClientManager "1..*" -> Client
-CommandesManager "1..*" -> Commandes
-ProduitsManager "1..*" -> Produits
+clientManager "1..*" .> client
+commandsManager "1..*" .> commandes
+productsManager "1..*" .> produits
 
 @enduml

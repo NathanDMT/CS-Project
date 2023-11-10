@@ -34,7 +34,7 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.connexionButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -87,16 +87,15 @@
             this.textBox4.TabIndex = 4;
             this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
-            // textBox5
+            // connexionButton
             // 
-            this.textBox5.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.textBox5.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.textBox5.Location = new System.Drawing.Point(519, 342);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(222, 20);
-            this.textBox5.TabIndex = 5;
-            this.textBox5.Text = "Se connecter";
-            this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.connexionButton.Location = new System.Drawing.Point(519, 339);
+            this.connexionButton.Name = "connexionButton";
+            this.connexionButton.Size = new System.Drawing.Size(222, 23);
+            this.connexionButton.TabIndex = 6;
+            this.connexionButton.Text = "Se connecter";
+            this.connexionButton.UseVisualStyleBackColor = true;
+            this.connexionButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
@@ -104,14 +103,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(80)))), ((int)(((byte)(0)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.connexionButton);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.pictureBox1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Menageelec - Accès à l\'application";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -125,7 +124,7 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Button connexionButton;
     }
 }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -33,6 +34,54 @@ namespace CS_Project
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string connectionString = "Server=localhost ; Database=menageleccsharp ; User=root;";
+
+            try
+            {
+                using (MySqlConnection connexion = new MySqlConnection(connectionString))
+                {
+                    connexion.Open();
+
+                    string query = $"SELECT * FROM user WHERE login = '{textBox1.Text}' AND password = '{textBox4.Text}'";
+
+                    using (MySqlCommand command = new MySqlCommand(query, connexion))
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            Form2 form2 = new Form2();
+
+                            form2.Show();
+
+                            this.Hide();
+
+                            Console.WriteLine("Connexion réussie !");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Le mot de passe ou l'identifiant est incorrect!");
+                            Console.WriteLine("Identifiant ou mot de passe incorrect.");
+                        }
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"Erreur MySQL : {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Une erreur s'est produite : {ex.Message}");
+            }
+        }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
         {
 
         }
