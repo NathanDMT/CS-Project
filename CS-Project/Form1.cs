@@ -18,17 +18,17 @@ namespace CS_Project
             InitializeComponent();
         }
 
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
@@ -48,7 +48,7 @@ namespace CS_Project
                 {
                     connexion.Open();
 
-                    string query = $"SELECT * FROM user WHERE login = '{textBox1.Text}' AND password = '{textBox4.Text}'";
+                    string query = $"SELECT * FROM user WHERE login = '{usernameTextBox.Text}' AND password = '{passwordTextBox.Text}'";
 
                     using (MySqlCommand command = new MySqlCommand(query, connexion))
                     using (MySqlDataReader reader = command.ExecuteReader())
@@ -60,28 +60,30 @@ namespace CS_Project
                             form2.Show();
 
                             this.Hide();
-
-                            Console.WriteLine("Connexion réussie !");
                         }
                         else
                         {
                             MessageBox.Show("Le mot de passe ou l'identifiant est incorrect!");
-                            Console.WriteLine("Identifiant ou mot de passe incorrect.");
                         }
                     }
                 }
             }
             catch (MySqlException ex)
             {
-                Console.WriteLine($"Erreur MySQL : {ex.Message}");
+                //Console.WriteLine($"Erreur MySQL : {ex.Message}");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Une erreur s'est produite : {ex.Message}");
+                //Console.WriteLine($"Une erreur s'est produite : {ex.Message}");
             }
         }
 
         private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
 
         }

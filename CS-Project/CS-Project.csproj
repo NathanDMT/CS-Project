@@ -98,6 +98,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Client.cs" />
+    <Compile Include="ClientManager.cs" />
+    <Compile Include="Commande.cs" />
+    <Compile Include="CommandeManager.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +120,8 @@
     <Compile Include="Form3.Designer.cs">
       <DependentUpon>Form3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Produit.cs" />
+    <Compile Include="ProduitManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -135,6 +141,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -149,6 +156,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\commande_impayee.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
