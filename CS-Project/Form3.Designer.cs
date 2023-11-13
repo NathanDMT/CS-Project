@@ -42,6 +42,8 @@
             this.checkBoxTout = new System.Windows.Forms.CheckBox();
             this.checkBoxAP = new System.Windows.Forms.CheckBox();
             this.checkBoxAE = new System.Windows.Forms.CheckBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuButton
@@ -200,12 +202,22 @@
             this.checkBoxAE.Text = "A expédier";
             this.checkBoxAE.UseVisualStyleBackColor = true;
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(303, 195);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(240, 150);
+            this.dataGridView1.TabIndex = 18;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
             // Form3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(80)))), ((int)(((byte)(0)))));
             this.ClientSize = new System.Drawing.Size(874, 516);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.checkBoxAE);
             this.Controls.Add(this.checkBoxAP);
             this.Controls.Add(this.checkBoxTout);
@@ -223,6 +235,7 @@
             this.Name = "Form3";
             this.Text = "Menagelec - Gestion des commandes";
             this.Load += new System.EventHandler(this.Form3_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -244,5 +257,6 @@
         private System.Windows.Forms.CheckBox checkBoxTout;
         private System.Windows.Forms.CheckBox checkBoxAP;
         private System.Windows.Forms.CheckBox checkBoxAE;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

@@ -55,5 +55,13 @@ namespace CS_Project
         {
 
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Co
+            // Request
+            // Boucle foreach
+
+        }
     }
 }

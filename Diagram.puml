@@ -19,11 +19,11 @@ class ClientManager <<repository>> {
 }
 
 class Commande <<entity>> {
-    - id: int
+    - idCommande: int
     - date: date
+    - idClient: int
     - estPayee: tinyint(1)
     - estExpediee: tinyint(1)
-    - client: int
 }
 
 class CommandeManager <<repository>> {
@@ -34,17 +34,17 @@ class CommandeManager <<repository>> {
 }
 
 class LigneCommande <<entity>> {
-    - produit: int
-    - commande: int
+    - idProduit: int
+    - idCommande: int
     - quantite: int
 }
 
 class Produit <<entity>> {
     - idProduit: int
-    - designation: text
-    - description: text
+    - designation: str
+    - description: str
     - dateAjout: datetime
-    - qte: int
+    - quantite: int
     - prix: decimal(6.2)
     - fichierImage: str(255)
     - pk_fournisseur: int

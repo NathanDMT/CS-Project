@@ -42,3 +42,11 @@ G:\SIO 2\Dev\Projets\C#\Code\CS-Project\bin\Debug\System.Threading.Tasks.Extensi
 G:\SIO 2\Dev\Projets\C#\Code\CS-Project\obj\Debug\CS_Project.Form2.resources
 G:\SIO 2\Dev\Projets\C#\Code\CS-Project\obj\Debug\CS_Project.Form3.resources
 G:\SIO 2\Dev\Projets\C#\Code\CS-Project\obj\Debug\CS-Project.csproj.CopyComplete
+G:\SIO 2\Dev\Projets\C#\Code\CS-Project\bin\Debug\Microsoft.OData.Edm.dll
+G:\SIO 2\Dev\Projets\C#\Code\CS-Project\bin\Debug\System.Text.Encodings.Web.dll
+G:\SIO 2\Dev\Projets\C#\Code\CS-Project\bin\Debug\System.Text.Json.dll
+G:\SIO 2\Dev\Projets\C#\Code\CS-Project\bin\Debug\System.ValueTuple.dll
+G:\SIO 2\Dev\Projets\C#\Code\CS-Project\bin\Debug\Microsoft.OData.Edm.xml
+G:\SIO 2\Dev\Projets\C#\Code\CS-Project\bin\Debug\System.Text.Encodings.Web.xml
+G:\SIO 2\Dev\Projets\C#\Code\CS-Project\bin\Debug\System.Text.Json.xml
+G:\SIO 2\Dev\Projets\C#\Code\CS-Project\bin\Debug\System.ValueTuple.xml
