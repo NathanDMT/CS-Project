@@ -1,3 +1,4 @@
+using System;
 using Microsoft.OData.Edm;
 
 public class Commande

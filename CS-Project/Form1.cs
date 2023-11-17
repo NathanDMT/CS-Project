@@ -47,6 +47,7 @@ namespace CS_Project
                 using (MySqlConnection connexion = new MySqlConnection(connectionString))
                 {
                     connexion.Open();
+                    Console.WriteLine("Connexion réussie !");
 
                     string query = $"SELECT * FROM user WHERE login = '{usernameTextBox.Text}' AND password = '{passwordTextBox.Text}'";
 
@@ -70,11 +71,11 @@ namespace CS_Project
             }
             catch (MySqlException ex)
             {
-                //Console.WriteLine($"Erreur MySQL : {ex.Message}");
+                Console.WriteLine($"Erreur MySQL : {ex.Message}");
             }
             catch (Exception ex)
             {
-                //Console.WriteLine($"Une erreur s'est produite : {ex.Message}");
+                Console.WriteLine($"Une erreur s'est produite : {ex.Message}");
             }
         }
 

@@ -1,3 +1,4 @@
+using System;
 public static class ProduitManager
 {
     public static void Create(Produit produit)

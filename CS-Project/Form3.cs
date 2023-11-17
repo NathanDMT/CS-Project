@@ -6,12 +6,14 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace CS_Project
 {
-    public partial class Form3 : Form
-    {
+    public partial class Form3 : Form 
+    { 
         public Form3()
         {
             InitializeComponent();
@@ -46,22 +48,54 @@ namespace CS_Project
 
         }
 
-        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
+            string connection = "Server=localhost ; Database=menageleccsharp ; User=root;";
+
+            string query = "SELECT idCommande, idProduit, quantite FROM lignecommande";
+            SqlDataReader read = new SqlDataReader(query, connection);
+            DataTable dataTable = new DataTable();
+            while (reader.Read())
+            {
+                ReadSingleRow((IDataRecord)reader);
+            }
+
+            dataGridView1.DataSource = dataTable;
+
+            Console.WriteLine("Nombre de lignes récupérées : " + dataTable.Rows.Count);
+
+            dataGridView1.Columns["idCommande"].HeaderText = "ID Commande";
+            dataGridView1.Columns["idProduit"].HeaderText = "ID Produit";
+            dataGridView1.Columns["quantite"].HeaderText = "Quantité";
+
 
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (checkBoxTout.Checked)
+            {
+                checkBoxAP.Checked = false;
+                checkBoxAE.Checked = false;
+            }
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void checkBoxAP_CheckedChanged(object sender, EventArgs e)
         {
-            // Co
-            // Request
-            // Boucle foreach
+            if (checkBoxAP.Checked)
+            {
+                checkBoxTout.Checked = false;
+                checkBoxAE.Checked = false;
+            }
+        }
 
+        private void checkBoxAE_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxAE.Checked)
+            {
+                checkBoxTout.Checked = false;
+                checkBoxAP.Checked = false;
+            }
         }
     }
 }
