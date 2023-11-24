@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CS_Project.Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,6 +15,8 @@ namespace CS_Project
         [STAThread]
         static void Main()
         {
+            DatabaseService.InitializeConnection();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());

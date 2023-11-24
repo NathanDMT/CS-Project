@@ -1,0 +1,29 @@
+= Documentation projet C#
+:doctype: book
+:author: Nathan DEMOINERET
+:hardbreaks-option:
+:icons: font
+:sectnums:
+:sectnumlevels: 4
+:chapter-signifier: Partie
+:font:
+:toc:
+:toclevels: 3
+:toc-title: Parties
+
+
+[[creation_de_la_partie_graphique]]
+== Creation de la partie graphique
+
+. Page de connexion
+
+Les champs de texte sont des "textBox" qui sont liées à un condition permetant de vérifier si le login et le mot de passe sont identique à ceux des 2 utilisateurs : fournier et hurier.
+
+L'image est inséré grâce à une "pictureBox" et l'image est stocké localement.
+
+. Page du menu
+
+Dans la page du menu, il y a un bouton "button" qui permet d'éxécuter plusieurs instructions permettant de fermer le formulaire de connexion, d'ouvrir le formulaire correspondant à celui que l'utilisateur souhaite ouvrir.
+
+. Page
+

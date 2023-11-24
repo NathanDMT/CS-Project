@@ -40,43 +40,23 @@ namespace CS_Project
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string connectionString = "Server=localhost ; Database=menageleccsharp ; User=root;";
+            string login = usernameTextBox.Text;
+            string password = passwordTextBox.Text;
 
-            try
+            if ((login == "fournier" && password == "1234") || (login == "hurier" && password == "5678"))
             {
-                using (MySqlConnection connexion = new MySqlConnection(connectionString))
-                {
-                    connexion.Open();
-
-                    string query = $"SELECT * FROM user WHERE login = '{usernameTextBox.Text}' AND password = '{passwordTextBox.Text}'";
-
-                    using (MySqlCommand command = new MySqlCommand(query, connexion))
-                    using (MySqlDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.HasRows)
-                        {
-                            Form2 form2 = new Form2();
-
-                            form2.Show();
-
-                            this.Hide();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Le mot de passe ou l'identifiant est incorrect!");
-                        }
-                    }
-                }
+                Form2 form2 = new Form2();
+                form2.Show();
+                this.Hide();
             }
-            catch (MySqlException ex)
+            else
             {
-                //Console.WriteLine($"Erreur MySQL : {ex.Message}");
-            }
-            catch (Exception ex)
-            {
-                //Console.WriteLine($"Une erreur s'est produite : {ex.Message}");
+                MessageBox.Show("Le mot de passe ou l'identifiant est incorrect!");
             }
         }
+        
+            
+        
 
         private void textBox5_TextChanged(object sender, EventArgs e)
         {
