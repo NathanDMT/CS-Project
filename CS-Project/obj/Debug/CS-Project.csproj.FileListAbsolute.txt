@@ -1,6 +1,3 @@
-G:\SIO 2\Dev\Projets\C#\Code\CS-Project\obj\Debug\CS_Project.Form1.resources
-G:\SIO 2\Dev\Projets\C#\Code\CS-Project\obj\Debug\CS_Project.Form2.resources
-G:\SIO 2\Dev\Projets\C#\Code\CS-Project\obj\Debug\CS_Project.Form3.resources
 G:\SIO 2\Dev\Projets\C#\Code\CS-Project\obj\Debug\CS_Project.Properties.Resources.resources
 G:\SIO 2\Dev\Projets\C#\Code\CS-Project\obj\Debug\CS-Project.csproj.GenerateResource.cache
 G:\SIO 2\Dev\Projets\C#\Code\CS-Project\obj\Debug\CS-Project.csproj.CoreCompileInputs.cache
@@ -50,3 +47,6 @@ G:\SIO 2\Dev\Projets\C#\Code\CS-Project\bin\Debug\System.ValueTuple.xml
 G:\SIO 2\Dev\Projets\C#\Code\CS-Project\obj\Debug\CS-Project.csproj.CopyComplete
 G:\SIO 2\Dev\Projets\C#\Code\CS-Project\obj\Debug\CS-Project.exe
 G:\SIO 2\Dev\Projets\C#\Code\CS-Project\obj\Debug\CS-Project.pdb
+G:\SIO 2\Dev\Projets\C#\Code\CS-Project\obj\Debug\CS_Project.Login.resources
+G:\SIO 2\Dev\Projets\C#\Code\CS-Project\obj\Debug\CS_Project.Menu.resources
+G:\SIO 2\Dev\Projets\C#\Code\CS-Project\obj\Debug\CS_Project.GestionCommandes.resources
