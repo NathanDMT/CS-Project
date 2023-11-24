@@ -1,6 +1,9 @@
-﻿namespace CS_Project
+﻿using System;
+using System.Windows.Forms;
+
+namespace CS_Project
 {
-    partial class Form3
+    partial class GestionCommandes
     {
         /// <summary>
         /// Required designer variable.
@@ -43,15 +46,15 @@
             this.labelColisage = new System.Windows.Forms.Label();
             this.labelCivilitee = new System.Windows.Forms.Label();
             this.groupBoxClientInformations = new System.Windows.Forms.GroupBox();
-            this.labelNom = new System.Windows.Forms.Label();
-            this.labelPrenom = new System.Windows.Forms.Label();
-            this.labelAdresse = new System.Windows.Forms.Label();
-            this.labelCodePostale = new System.Windows.Forms.Label();
-            this.labelVille = new System.Windows.Forms.Label();
-            this.labelAdresseMail = new System.Windows.Forms.Label();
-            this.labelAdresseMail1 = new System.Windows.Forms.Label();
-            this.labelTelephone = new System.Windows.Forms.Label();
             this.labelTelephone1 = new System.Windows.Forms.Label();
+            this.labelTelephone = new System.Windows.Forms.Label();
+            this.labelAdresseMail1 = new System.Windows.Forms.Label();
+            this.labelAdresseMail = new System.Windows.Forms.Label();
+            this.labelVille = new System.Windows.Forms.Label();
+            this.labelCodePostale = new System.Windows.Forms.Label();
+            this.labelAdresse = new System.Windows.Forms.Label();
+            this.labelPrenom = new System.Windows.Forms.Label();
+            this.labelNom = new System.Windows.Forms.Label();
             this.labelListeCommandes = new System.Windows.Forms.Label();
             this.labelInformationCommande = new System.Windows.Forms.Label();
             this.labelRechercheSpecifique = new System.Windows.Forms.Label();
@@ -102,7 +105,7 @@
             this.checkBoxTout.TabIndex = 15;
             this.checkBoxTout.Text = "Tout";
             this.checkBoxTout.UseVisualStyleBackColor = true;
-            this.checkBoxTout.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.checkBoxTout.CheckedChanged += new System.EventHandler(this.checkBoxTout_CheckedChanged);
             // 
             // checkBoxAP
             // 
@@ -139,7 +142,7 @@
             this.dataGridViewCommandes.RowHeadersVisible = false;
             this.dataGridViewCommandes.Size = new System.Drawing.Size(238, 450);
             this.dataGridViewCommandes.TabIndex = 18;
-            this.dataGridViewCommandes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridViewCommandes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCommandes_CellContentClick);
             // 
             // labelNombreElements
             // 
@@ -149,7 +152,7 @@
             this.labelNombreElements.Size = new System.Drawing.Size(103, 13);
             this.labelNombreElements.TabIndex = 20;
             this.labelNombreElements.Text = "Nombre d\'éléments :";
-            this.labelNombreElements.Click += new System.EventHandler(this.label1_Click);
+            this.labelNombreElements.Click += new System.EventHandler(this.labelNombreElements_Click);
             // 
             // labelNombreElements1
             // 
@@ -159,7 +162,7 @@
             this.labelNombreElements1.Size = new System.Drawing.Size(13, 13);
             this.labelNombreElements1.TabIndex = 21;
             this.labelNombreElements1.Text = "0";
-            this.labelNombreElements1.Click += new System.EventHandler(this.label2_Click);
+            this.labelNombreElements1.Click += new System.EventHandler(this.labelNombreElements1_Click);
             // 
             // labelClientRecherche
             // 
@@ -191,7 +194,7 @@
             this.labelColisage.Size = new System.Drawing.Size(91, 20);
             this.labelColisage.TabIndex = 25;
             this.labelColisage.Text = "Documents";
-            this.labelColisage.Click += new System.EventHandler(this.label5_Click);
+            this.labelColisage.Click += new System.EventHandler(this.labelColisage_Click);
             // 
             // labelCivilitee
             // 
@@ -221,34 +224,53 @@
             this.groupBoxClientInformations.TabIndex = 26;
             this.groupBoxClientInformations.TabStop = false;
             this.groupBoxClientInformations.Text = "groupBox1";
-            this.groupBoxClientInformations.Enter += new System.EventHandler(this.groupBox1_Enter);
+            this.groupBoxClientInformations.Enter += new System.EventHandler(this.groupBoxClientInformations_Enter);
             // 
-            // labelNom
+            // labelTelephone1
             // 
-            this.labelNom.AutoSize = true;
-            this.labelNom.Location = new System.Drawing.Point(104, 19);
-            this.labelNom.Name = "labelNom";
-            this.labelNom.Size = new System.Drawing.Size(35, 13);
-            this.labelNom.TabIndex = 1;
-            this.labelNom.Text = "label7";
+            this.labelTelephone1.AutoSize = true;
+            this.labelTelephone1.Location = new System.Drawing.Point(99, 117);
+            this.labelTelephone1.Name = "labelTelephone1";
+            this.labelTelephone1.Size = new System.Drawing.Size(41, 13);
+            this.labelTelephone1.TabIndex = 9;
+            this.labelTelephone1.Text = "label15";
             // 
-            // labelPrenom
+            // labelTelephone
             // 
-            this.labelPrenom.AutoSize = true;
-            this.labelPrenom.Location = new System.Drawing.Point(193, 19);
-            this.labelPrenom.Name = "labelPrenom";
-            this.labelPrenom.Size = new System.Drawing.Size(35, 13);
-            this.labelPrenom.TabIndex = 2;
-            this.labelPrenom.Text = "label8";
+            this.labelTelephone.AutoSize = true;
+            this.labelTelephone.Location = new System.Drawing.Point(14, 117);
+            this.labelTelephone.Name = "labelTelephone";
+            this.labelTelephone.Size = new System.Drawing.Size(64, 13);
+            this.labelTelephone.TabIndex = 8;
+            this.labelTelephone.Text = "Téléphone :";
             // 
-            // labelAdresse
+            // labelAdresseMail1
             // 
-            this.labelAdresse.AutoSize = true;
-            this.labelAdresse.Location = new System.Drawing.Point(16, 44);
-            this.labelAdresse.Name = "labelAdresse";
-            this.labelAdresse.Size = new System.Drawing.Size(35, 13);
-            this.labelAdresse.TabIndex = 3;
-            this.labelAdresse.Text = "label9";
+            this.labelAdresseMail1.AutoSize = true;
+            this.labelAdresseMail1.Location = new System.Drawing.Point(99, 93);
+            this.labelAdresseMail1.Name = "labelAdresseMail1";
+            this.labelAdresseMail1.Size = new System.Drawing.Size(41, 13);
+            this.labelAdresseMail1.TabIndex = 7;
+            this.labelAdresseMail1.Text = "label13";
+            // 
+            // labelAdresseMail
+            // 
+            this.labelAdresseMail.AutoSize = true;
+            this.labelAdresseMail.Location = new System.Drawing.Point(14, 93);
+            this.labelAdresseMail.Name = "labelAdresseMail";
+            this.labelAdresseMail.Size = new System.Drawing.Size(72, 13);
+            this.labelAdresseMail.TabIndex = 6;
+            this.labelAdresseMail.Text = "Adresse mail :";
+            this.labelAdresseMail.Click += new System.EventHandler(this.labelAdresseMail_Click);
+            // 
+            // labelVille
+            // 
+            this.labelVille.AutoSize = true;
+            this.labelVille.Location = new System.Drawing.Point(100, 68);
+            this.labelVille.Name = "labelVille";
+            this.labelVille.Size = new System.Drawing.Size(41, 13);
+            this.labelVille.TabIndex = 5;
+            this.labelVille.Text = "label11";
             // 
             // labelCodePostale
             // 
@@ -259,51 +281,32 @@
             this.labelCodePostale.TabIndex = 4;
             this.labelCodePostale.Text = "label10";
             // 
-            // labelVille
+            // labelAdresse
             // 
-            this.labelVille.AutoSize = true;
-            this.labelVille.Location = new System.Drawing.Point(98, 68);
-            this.labelVille.Name = "labelVille";
-            this.labelVille.Size = new System.Drawing.Size(41, 13);
-            this.labelVille.TabIndex = 5;
-            this.labelVille.Text = "label11";
+            this.labelAdresse.AutoSize = true;
+            this.labelAdresse.Location = new System.Drawing.Point(16, 44);
+            this.labelAdresse.Name = "labelAdresse";
+            this.labelAdresse.Size = new System.Drawing.Size(35, 13);
+            this.labelAdresse.TabIndex = 3;
+            this.labelAdresse.Text = "label9";
             // 
-            // labelAdresseMail
+            // labelPrenom
             // 
-            this.labelAdresseMail.AutoSize = true;
-            this.labelAdresseMail.Location = new System.Drawing.Point(14, 95);
-            this.labelAdresseMail.Name = "labelAdresseMail";
-            this.labelAdresseMail.Size = new System.Drawing.Size(72, 13);
-            this.labelAdresseMail.TabIndex = 6;
-            this.labelAdresseMail.Text = "Adresse mail :";
-            this.labelAdresseMail.Click += new System.EventHandler(this.label12_Click);
+            this.labelPrenom.AutoSize = true;
+            this.labelPrenom.Location = new System.Drawing.Point(184, 19);
+            this.labelPrenom.Name = "labelPrenom";
+            this.labelPrenom.Size = new System.Drawing.Size(35, 13);
+            this.labelPrenom.TabIndex = 2;
+            this.labelPrenom.Text = "label8";
             // 
-            // labelAdresseMail1
+            // labelNom
             // 
-            this.labelAdresseMail1.AutoSize = true;
-            this.labelAdresseMail1.Location = new System.Drawing.Point(98, 95);
-            this.labelAdresseMail1.Name = "labelAdresseMail1";
-            this.labelAdresseMail1.Size = new System.Drawing.Size(41, 13);
-            this.labelAdresseMail1.TabIndex = 7;
-            this.labelAdresseMail1.Text = "label13";
-            // 
-            // labelTelephone
-            // 
-            this.labelTelephone.AutoSize = true;
-            this.labelTelephone.Location = new System.Drawing.Point(14, 121);
-            this.labelTelephone.Name = "labelTelephone";
-            this.labelTelephone.Size = new System.Drawing.Size(64, 13);
-            this.labelTelephone.TabIndex = 8;
-            this.labelTelephone.Text = "Téléphone :";
-            // 
-            // labelTelephone1
-            // 
-            this.labelTelephone1.AutoSize = true;
-            this.labelTelephone1.Location = new System.Drawing.Point(98, 121);
-            this.labelTelephone1.Name = "labelTelephone1";
-            this.labelTelephone1.Size = new System.Drawing.Size(41, 13);
-            this.labelTelephone1.TabIndex = 9;
-            this.labelTelephone1.Text = "label15";
+            this.labelNom.AutoSize = true;
+            this.labelNom.Location = new System.Drawing.Point(99, 19);
+            this.labelNom.Name = "labelNom";
+            this.labelNom.Size = new System.Drawing.Size(35, 13);
+            this.labelNom.TabIndex = 1;
+            this.labelNom.Text = "label7";
             // 
             // labelListeCommandes
             // 
@@ -326,7 +329,7 @@
             this.labelInformationCommande.Size = new System.Drawing.Size(313, 20);
             this.labelInformationCommande.TabIndex = 27;
             this.labelInformationCommande.Text = "Informations de la commande sélectionnée";
-            this.labelInformationCommande.Click += new System.EventHandler(this.label4_Click);
+            this.labelInformationCommande.Click += new System.EventHandler(this.labelInformationCommande_Click);
             // 
             // labelRechercheSpecifique
             // 
@@ -348,9 +351,9 @@
             this.labelGestionDesCommandes.Size = new System.Drawing.Size(262, 24);
             this.labelGestionDesCommandes.TabIndex = 29;
             this.labelGestionDesCommandes.Text = "Gestionnaire des commandes";
-            this.labelGestionDesCommandes.Click += new System.EventHandler(this.label1_Click_1);
+            this.labelGestionDesCommandes.Click += new System.EventHandler(this.labelGestionDesCommandes_Click);
             // 
-            // Form3
+            // GestionCommandes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -374,9 +377,9 @@
             this.Controls.Add(this.textBoxRechercheCommande);
             this.Controls.Add(this.textBoxRechercheClient);
             this.Controls.Add(this.menuButton);
-            this.Name = "Form3";
+            this.Name = "GestionCommandes";
             this.Text = "Menagelec - Gestion des commandes";
-            this.Load += new System.EventHandler(this.Form3_Load);
+            this.Load += new System.EventHandler(this.GestionCommandes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCommandes)).EndInit();
             this.groupBoxClientInformations.ResumeLayout(false);
             this.groupBoxClientInformations.PerformLayout();

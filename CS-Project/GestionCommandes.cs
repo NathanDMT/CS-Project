@@ -6,16 +6,16 @@ using System.Windows.Forms;
 
 namespace CS_Project
 {
-    public partial class Form3 : Form
+    public partial class GestionCommandes : Form
     {
-        public Form3()
+        public GestionCommandes()
         {
             InitializeComponent();
 
-            this.FormClosing += Form3_FormClosing;
+            this.FormClosing += GestionCommandes_Load_FormClosing;
         }
 
-        private void Form3_FormClosing(object sender, FormClosingEventArgs e)
+        private void GestionCommandes_Load_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing)
             {
@@ -25,24 +25,19 @@ namespace CS_Project
 
         private void menuButton_Click(object sender, EventArgs e)
         {
-            Form2 form2 = new Form2();
+            Menu form2 = new Menu();
 
             form2.Show();
 
             this.Hide();
         }
 
-        private void textBox7_TextChanged(object sender, EventArgs e)
+        private void GestionCommandes_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void Form3_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void checkBoxTout_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxTout.Checked)
             {
@@ -135,80 +130,49 @@ namespace CS_Project
                 labelNombreElements1.Text = "0".ToString();
             }
         }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void groupBoxClientInformations_Enter(object sender, EventArgs e)
         {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox10_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox10_TextChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void textBox6_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label12_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox9_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
+            
         }
 
         private void labelCivilitee_Click(object sender, EventArgs e)
         {
-
+            
         }
 
-        private void label1_Click_1(object sender, EventArgs e)
+        private void labelColisage_Click(object sender, EventArgs e)
         {
+            
+        }
 
+        private void labelNombreElements1_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void labelNombreElements_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void dataGridViewCommandes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            labelCivilitee.Text = dataGridViewCommandes.Rows.ToString();
+        }
+
+        private void labelGestionDesCommandes_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void labelInformationCommande_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void labelAdresseMail_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
