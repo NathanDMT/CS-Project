@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MySql.Data.MySqlClient;
+﻿using CS_Project.Entity;
+using CS_Project.Manager;
+using System;
+using System.Collections.ObjectModel;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 
 namespace CS_Project
 {
-    public partial class Form3 : Form 
-    { 
+    public partial class Form3 : Form
+    {
         public Form3()
         {
             InitializeComponent();
@@ -54,7 +48,30 @@ namespace CS_Project
             {
                 checkBoxAP.Checked = false;
                 checkBoxAE.Checked = false;
+
+                dataGridViewCommandes.ColumnCount = 3;
+                dataGridViewCommandes.ColumnHeadersVisible = true;
+
+                dataGridViewCommandes.Columns[0].Name = "idCommande";
+                dataGridViewCommandes.Columns[1].Name = "date";
+                dataGridViewCommandes.Columns[2].Name = "client";
+
+                Collection<Commande> commandes = CommandeManager.ReadAllCommandes();
+
+                foreach (Commande commande in commandes)
+                {
+                    dataGridViewCommandes.Rows.Add(commande.idCommande, commande.date, commande.idClient);
+                }
+
+                labelNombreElements1.Text = dataGridViewCommandes.Rows.Count.ToString();
             }
+
+            else
+            {
+                dataGridViewCommandes.Rows.Clear();
+                labelNombreElements1.Text = "0".ToString();
+            }
+
         }
 
         private void checkBoxAP_CheckedChanged(object sender, EventArgs e)
@@ -63,6 +80,28 @@ namespace CS_Project
             {
                 checkBoxTout.Checked = false;
                 checkBoxAE.Checked = false;
+
+                dataGridViewCommandes.ColumnCount = 3;
+                dataGridViewCommandes.ColumnHeadersVisible = true;
+
+                dataGridViewCommandes.Columns[0].Name = "idCommande";
+                dataGridViewCommandes.Columns[1].Name = "date";
+                dataGridViewCommandes.Columns[2].Name = "client";
+
+                Collection<Commande> commandes = CommandeManager.ReadPayableCommandes();
+
+                foreach (Commande commande in commandes)
+                {
+                    dataGridViewCommandes.Rows.Add(commande.idCommande, commande.date, commande.idClient);
+                }
+
+                labelNombreElements1.Text = dataGridViewCommandes.Rows.Count.ToString();
+            }
+
+            else
+            {
+                dataGridViewCommandes.Rows.Clear();
+                labelNombreElements1.Text = "0".ToString();
             }
         }
 
@@ -72,83 +111,104 @@ namespace CS_Project
             {
                 checkBoxTout.Checked = false;
                 checkBoxAP.Checked = false;
+
+                dataGridViewCommandes.ColumnCount = 3;
+                dataGridViewCommandes.ColumnHeadersVisible = true;
+
+                dataGridViewCommandes.Columns[0].Name = "idCommande";
+                dataGridViewCommandes.Columns[1].Name = "date";
+                dataGridViewCommandes.Columns[2].Name = "client";
+
+                Collection<Commande> commandes = CommandeManager.ReadToShipCommandes();
+
+                foreach (Commande commande in commandes)
+                {
+                    dataGridViewCommandes.Rows.Add(commande.idCommande, commande.date, commande.idClient);
+                }
+
+                labelNombreElements1.Text = dataGridViewCommandes.Rows.Count.ToString();
             }
-        }
 
-        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
+            else
+            {
+                dataGridViewCommandes.Rows.Clear();
+                labelNombreElements1.Text = "0".ToString();
+            }
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            string connectionString = "Server=localhost ; Database=menageleccsharp ; User=root;";
-            string query = "SELECT idProduit, idCommande, quantite FROM lignecommande";
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                SqlCommand command = new SqlCommand(query, connection);
-                connection.Open();
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    int idCommande = reader.GetInt32(reader.GetOrdinal("idCommande"));
-                    int idProduit = reader.GetInt32(reader.GetOrdinal("idProduit"));
-                    int quantite = reader.GetInt32(reader.GetOrdinal("quantite"));
-
-                    // Do something with the retrieved values
-                    Console.WriteLine($"idCommande: {idCommande}, idProduit: {idProduit}, quantite: {quantite}");
-                }
-
-                DataTable dataTable = new DataTable();
-                dataTable.Load(reader); // This will load the SqlDataReader data into the DataTable
-
-                reader.Close();
-
-                connection.Close();
-
-                // Now you can use the dataTable for further processing or display
-                // Example: Printing data from the DataTable
-                
-                foreach (DataRow row in dataTable.Rows)
-                {
-                    Console.WriteLine($"idCommande: {row["idCommande"]}, idProduit: {row["idProduit"]}, quantite: {row["quantite"]}");
-                }
-            }
-        }
-        private static void ReadOrderData(string connectionString)
-        {
-            string queryString = "SELECT idProduit, idCommande, quantite FROM lignecommande";
-
-            using (SqlConnection connection =
-                       new SqlConnection(connectionString))
-            {
-                SqlCommand command =
-                    new SqlCommand(queryString, connection);
-                connection.Open();
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                // Call Read before accessing data.
-                while (reader.Read())
-                {
-                    //var client = new Client()
-                    //{
-
-                    //}
-                    //return client;
-                }
-
-                // Call Close when done reading.
-                reader.Close();
-            }
         }
 
-        private static void ReadSingleRow(IDataRecord dataRecord)
+        private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            Console.WriteLine(String.Format("{0}, {1}", dataRecord[0], dataRecord[1]));
+
+        }
+
+        private void textBox10_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox10_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void textBox6_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox9_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelCivilitee_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

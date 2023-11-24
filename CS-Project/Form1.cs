@@ -40,8 +40,8 @@ namespace CS_Project
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string login = textBox1.Text;
-            string password = textBox2.Text;
+            string login = usernameTextBox.Text;
+            string password = passwordTextBox.Text;
 
             if ((login == "fournier" && password == "1234") || (login == "hurier" && password == "5678"))
             {

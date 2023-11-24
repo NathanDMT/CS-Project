@@ -1,11 +1,13 @@
 using System;
+using MySql.Data.MySqlClient;
 
 namespace CS_Project.Service
 {
 
-    static class Service
+    static class DatabaseService
     {
-        private static string Connexion;
+        private static MySqlConnection Connexion;
+
         private const string _server = "localhost";
         private const string _port = "3306";
         private const string _user = "root";
@@ -19,6 +21,12 @@ namespace CS_Project.Service
                   $"user={_user};" +
                   $"password={_password};" +
                   $"database={_database};";
+
+            Connexion = new MySqlConnection(url);
+        }
+
+        public static MySqlConnection GetConnexion() { 
+            return Connexion;
         }
 
     }
