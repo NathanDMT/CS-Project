@@ -31,14 +31,30 @@ namespace CS_Project.Manager
         }
 
 
-        public static void Read(Client client)
+        public static Client Read(int idClient)
         {
-            string query = "SELECT * FROM client";
+            string query = "SELECT * FROM client WHERE idClient = @idClient";
             DatabaseService.GetConnexion().Open(); // Ouverture de la connexion
 
             MySqlCommand readCommande = new MySqlCommand(query, DatabaseService.GetConnexion()); // Création de la commande
+            readCommande.Parameters.AddWithValue("@idClient", idClient);
 
+            Client client = new Client();
+            MySqlDataReader reader = readCommande.ExecuteReader();
+            while (reader.Read())
+            {
+                client.idClient = reader.GetInt32(0);
+                client.civilite = reader.GetString(1);
+                client.nom = reader.GetString(2);
+                client.prenom = reader.GetString(3);
+                client.adresse = reader.GetString(4);
+                client.ville = reader.GetString(5);
+                client.cp = reader.GetInt32(6);
+                client.mail = reader.GetString(7);
+                client.tel = reader.GetString(8);
+            }
             DatabaseService.GetConnexion().Close(); // Fermeture de la connexion
+            return client;
         }
 
         public static Collection<Client> ReadAllClient()

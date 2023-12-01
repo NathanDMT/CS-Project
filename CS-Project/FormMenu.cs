@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace CS_Project
 {
-    public partial class Menu : Form
+    public partial class FormMenu : Form
     {
-        public Menu()
+        public FormMenu()
         {
             InitializeComponent();
 
@@ -29,7 +29,7 @@ namespace CS_Project
 
         private void buttonCommandMenu_Click(object sender, EventArgs e)
         {
-            GestionCommandes form3 = new GestionCommandes();
+            FormGestionCommandes form3 = new FormGestionCommandes();
 
             form3.Show();
 

@@ -25,15 +25,28 @@ namespace CS_Project.Manager
         }
 
 
-        public static void Read(Commande commande)
+        public static Commande Read(int idCommande)
         {
-            string query = "SELECT * FROM commande";
+            string query = "SELECT * FROM commande WHERE idCommande = @idCommande";
             DatabaseService.GetConnexion().Open(); // Ouverture de la connexion
 
             MySqlCommand readCommande = new MySqlCommand(query, DatabaseService.GetConnexion()); // Création de la commande
+            readCommande.Parameters.AddWithValue("@idCommande", idCommande);
 
+            Commande commande = new Commande();
+            MySqlDataReader reader = readCommande.ExecuteReader();
+            while (reader.Read())
+            {
+                commande.idCommande = reader.GetInt32(0);
+                commande.date = reader.GetDateTime(1);
+                commande.estPayee = reader.GetInt32(2);
+                commande.estExpediee = reader.GetInt32(3);
+            }
             DatabaseService.GetConnexion().Close(); // Fermeture de la connexion
+            return commande;
         }
+
+        
 
         public static Collection<Commande> ReadAllCommandes()
         {
@@ -129,9 +142,23 @@ namespace CS_Project.Manager
             return commandeCollection; // Retour de la collection
         }
 
+        public static Commande UpdatePaiementState(int idCommande)
+        {
+            string query = "UPDATE commande SET estPayee = 1 WHERE idCommande = @idCommande"; // Création de la commande "UPDATE"
+
+            DatabaseService.GetConnexion().Open(); // Ouverture de la connexion
+
+            MySqlCommand readCommande = new MySqlCommand(query, DatabaseService.GetConnexion()); // Création de la commande
+            readCommande.Parameters.AddWithValue("@idCommande", idCommande);
+            
+            DatabaseService.GetConnexion().Close(); // Fermeture de la connexion
+
+            return null;
+        }
+
         public static void Update(Commande commande)
         {
-            string query = "UPDATE commande SET (date,estPayee,estExpediee) VALUES (@date,@estPayee,@estExpediee) FROM WHERE idCommande = @idCommande"; // Création de la commande "UPDATE"
+            string query = "UPDATE commande SET (date,estPayee,estExpediee) VALUES (@date,@estPayee,@estExpediee) WHERE idCommande = @idCommande"; // Création de la commande "UPDATE"
 
             DatabaseService.GetConnexion().Open(); // Ouverture de la connexion
 

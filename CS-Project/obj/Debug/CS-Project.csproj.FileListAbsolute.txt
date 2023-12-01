@@ -47,6 +47,6 @@ G:\SIO 2\Dev\Projets\C#\Code\CS-Project\bin\Debug\System.ValueTuple.xml
 G:\SIO 2\Dev\Projets\C#\Code\CS-Project\obj\Debug\CS-Project.csproj.CopyComplete
 G:\SIO 2\Dev\Projets\C#\Code\CS-Project\obj\Debug\CS-Project.exe
 G:\SIO 2\Dev\Projets\C#\Code\CS-Project\obj\Debug\CS-Project.pdb
-G:\SIO 2\Dev\Projets\C#\Code\CS-Project\obj\Debug\CS_Project.Login.resources
-G:\SIO 2\Dev\Projets\C#\Code\CS-Project\obj\Debug\CS_Project.Menu.resources
-G:\SIO 2\Dev\Projets\C#\Code\CS-Project\obj\Debug\CS_Project.GestionCommandes.resources
+G:\SIO 2\Dev\Projets\C#\Code\CS-Project\obj\Debug\CS_Project.FormLogin.resources
+G:\SIO 2\Dev\Projets\C#\Code\CS-Project\obj\Debug\CS_Project.FormMenu.resources
+G:\SIO 2\Dev\Projets\C#\Code\CS-Project\obj\Debug\CS_Project.FormGestionCommandes.resources

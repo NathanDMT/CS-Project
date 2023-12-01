@@ -2,7 +2,7 @@
 
 namespace CS_Project
 {
-    partial class Login
+    partial class FormLogin
     {
         /// <summary>
         /// Variable nécessaire au concepteur.

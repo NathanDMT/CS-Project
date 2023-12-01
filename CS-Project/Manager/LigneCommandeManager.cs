@@ -25,16 +25,35 @@ namespace CS_Project.Manager
             DatabaseService.GetConnexion().Close(); // Fermeture de la connexion
         }
 
-
-        public static void Read(LigneCommande ligneCommande)
+        public static Collection<LigneCommande> ReadAllCommandeByOne(int idCommande)
         {
-            string query = "SELECT * FROM ligneCommande";
-
+            string query = "SELECT * FROM lignecommande WHERE idCommande = @idCommande"; // Commande SQL "SELECT"
+            Collection<LigneCommande> commandeCollection = new Collection<LigneCommande>(); // Collection qui est une instance de type Collection
             DatabaseService.GetConnexion().Open(); // Ouverture de la connexion
 
-            MySqlCommand readCommande = new MySqlCommand(query, DatabaseService.GetConnexion()); // Création de la commande
+            MySqlCommand requestCommand = new MySqlCommand(query, DatabaseService.GetConnexion()); // Création de la commande
+            requestCommand.Parameters.AddWithValue("@idCommande", idCommande);
+            MySqlDataReader reader = requestCommand.ExecuteReader(); // Création du reader qui va lire la table commande
+            try
+            {
+                while (reader.Read())
+                {
+                    LigneCommande ligneCommande = new LigneCommande(); // Création de commande
 
-            DatabaseService.GetConnexion().Close(); // Fermeture de la connexion
+                    ligneCommande.idProduit = reader.GetInt32(0);
+                    ligneCommande.idCommande = reader.GetInt32(1);
+                    ligneCommande.quantite = reader.GetInt32(2);
+                    Console.WriteLine(reader.GetInt32(1));
+
+                    commandeCollection.Add(ligneCommande); // Ajout de la commande à la liste
+                }
+            }
+            catch (Exception) { }
+            finally
+            {
+                DatabaseService.GetConnexion().Close(); // Fermeture de la connexion
+            }
+            return commandeCollection; // Retour de la collection
         }
 
         public static Collection<LigneCommande> ReadAllLigneCommande()
@@ -70,7 +89,7 @@ namespace CS_Project.Manager
 
         public static void Update(LigneCommande ligneCommande)
         {
-            string query = "UPDATE ligneCommande SET idProduit,estPayee,estExpediee) VALUES (@idProduit,@estPayee,@estExpediee) FROM WHERE idCommande = @idCommande"; // Création de la commande "UPDATE"
+            string query = "UPDATE ligneCommande SET (idProduit,estPayee,estExpediee) VALUES (@idProduit,@estPayee,@estExpediee) FROM WHERE idCommande = @idCommande"; // Création de la commande "UPDATE"
 
             DatabaseService.GetConnexion().Open(); // Ouverture de la connexion
 
