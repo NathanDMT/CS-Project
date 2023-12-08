@@ -2,6 +2,7 @@
 using CS_Project.Manager;
 using System;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Windows.Forms;
 
 namespace CS_Project
@@ -51,9 +52,7 @@ namespace CS_Project
                 dataGridViewCommandes.Columns[1].Name = "date";
                 dataGridViewCommandes.Columns[2].Name = "client";
 
-                Collection<Commande> commandes = CommandeManager.ReadAllCommandes();
-
-                foreach (Commande commande in commandes)
+                foreach (Commande commande in GetCommandeWithFilter())
                 {
                     dataGridViewCommandes.Rows.Add(commande.idCommande, commande.date, commande.idClient);
                 }
@@ -83,9 +82,7 @@ namespace CS_Project
                 dataGridViewCommandes.Columns[1].Name = "date";
                 dataGridViewCommandes.Columns[2].Name = "client";
 
-                Collection<Commande> commandes = CommandeManager.ReadPayableCommandes();
-
-                foreach (Commande commande in commandes)
+                foreach (Commande commande in GetCommandeWithFilter())
                 {
                     dataGridViewCommandes.Rows.Add(commande.idCommande, commande.date, commande.idClient);
                 }
@@ -114,9 +111,7 @@ namespace CS_Project
                 dataGridViewCommandes.Columns[1].Name = "date";
                 dataGridViewCommandes.Columns[2].Name = "client";
 
-                Collection<Commande> commandes = CommandeManager.ReadToShipCommandes();
-
-                foreach (Commande commande in commandes)
+                foreach (Commande commande in GetCommandeWithFilter())
                 {
                     dataGridViewCommandes.Rows.Add(commande.idCommande, commande.date, commande.idClient);
                 }
@@ -129,10 +124,6 @@ namespace CS_Project
                 dataGridViewCommandes.Rows.Clear();
                 labelNombreElements1.Text = "0".ToString();
             }
-        }
-        private void groupBoxClientInformations_Enter(object sender, EventArgs e)
-        {
-            
         }
 
         private void labelCivilitee_Click(object sender, EventArgs e)
@@ -195,6 +186,8 @@ namespace CS_Project
 
             groupBoxClientInformations.Text = "Client n°" + client.idClient.ToString();
 
+            groupBoxClientInformations.Tag = client;
+
 
             // Partie affichage de la commande
 
@@ -203,6 +196,8 @@ namespace CS_Project
             labelDateCommande1.Text = commande.date.ToString();
 
             groupBoxCommandeInformations.Text = "Commande n°" + commande.idCommande.ToString();
+
+            groupBoxCommandeInformations.Tag = commande;
 
 
             // Partie affichage les bouttons de modification des paramètres "estPayee" et "estExpediee"
@@ -246,6 +241,7 @@ namespace CS_Project
             }
 
             // Partie affichage du GridView des commandes du même client
+
             dataGridViewCommandeByOne.Rows.Clear();
 
             dataGridViewCommandeByOne.ColumnCount = 2;
@@ -254,12 +250,6 @@ namespace CS_Project
             dataGridViewCommandeByOne.Columns[0].Name = "Produit commandé";
             dataGridViewCommandeByOne.Columns[1].Name = "Quantité";
 
-            Collection<LigneCommande> ligneCommandes = LigneCommandeManager.ReadAllCommandeByOne(commandeCellValueOut);
-
-            foreach (LigneCommande ligneCommande in ligneCommandes)
-            {
-                dataGridViewCommandeByOne.Rows.Add(ligneCommande.idProduit, ligneCommande.quantite);
-            }
         }
 
         private void pictureBoxPaiementValid_Click(object sender, EventArgs e)
@@ -281,27 +271,174 @@ namespace CS_Project
         {
 
         }
-
         private void buttonValidPaiement_Click(object sender, EventArgs e)
         {
-            DataGridViewCell cell = dataGridViewCommandes.CurrentCell;
-            DataGridViewRow row = dataGridViewCommandes.CurrentRow;
+            var commande = (Commande)groupBoxCommandeInformations.Tag;
+            commande.estPayee = 1;
+            CommandeManager.Update(commande);
 
-            var commandeCellValue = int.TryParse(dataGridViewCommandes.Rows[row.Index].Cells[0].Value.ToString(), out int commandeCellValueOut);
-            Commande commande = CommandeManager.UpdatePaiementState(commandeCellValueOut);
+            if (commande.estPayee == 0)
+            {
+                pictureBoxPaiementValid.Hide();
+                pictureBoxPaiementInvalid.Show();
+                buttonValidPaiement.Show();
+            }
 
-            Console.WriteLine(commandeCellValue);
-            Console.WriteLine(commande);
+
+            if (commande.estPayee == 1)
+            {
+                pictureBoxPaiementValid.Show();
+                pictureBoxPaiementInvalid.Hide();
+                buttonValidExpedition.Show();
+                buttonValidPaiement.Hide();
+            }
+
+
+            if (commande.estExpediee == 0)
+            {
+                pictureBoxExpeditionValid.Hide();
+                pictureBoxExpeditionInvalid.Show();
+            }
+
+
+            if (commande.estPayee == 1 && commande.estExpediee == 0)
+            {
+                buttonValidPaiement.Hide();
+                buttonValidExpedition.Show();
+            }
+
+
+            if (commande.estExpediee == 1)
+            {
+                pictureBoxExpeditionValid.Show();
+                pictureBoxExpeditionInvalid.Hide();
+                buttonValidExpedition.Hide();
+            }
         }
 
         private void buttonValidExpedition_Click(object sender, EventArgs e)
         {
+            var commande = (Commande)groupBoxCommandeInformations.Tag;
+            commande.estExpediee = 1;
+            CommandeManager.Update(commande);
 
+            if (commande.estPayee == 0)
+            {
+                pictureBoxPaiementValid.Hide();
+                pictureBoxPaiementInvalid.Show();
+                buttonValidPaiement.Show();
+            }
+
+
+            if (commande.estPayee == 1)
+            {
+                pictureBoxPaiementValid.Show();
+                pictureBoxPaiementInvalid.Hide();
+                buttonValidExpedition.Show();
+                buttonValidPaiement.Hide();
+            }
+
+
+            if (commande.estExpediee == 0)
+            {
+                pictureBoxExpeditionValid.Hide();
+                pictureBoxExpeditionInvalid.Show();
+            }
+
+
+            if (commande.estPayee == 1 && commande.estExpediee == 0)
+            {
+                buttonValidPaiement.Hide();
+                buttonValidExpedition.Show();
+            }
+
+
+            if (commande.estExpediee == 1)
+            {
+                pictureBoxExpeditionValid.Show();
+                pictureBoxExpeditionInvalid.Hide();
+                buttonValidExpedition.Hide();
+            }
+        }
+        private void checkBoxRechercheCommande_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxRechercheCommande.Checked)
+            {
+                dataGridViewCommandes.Rows.Clear();
+                checkBoxRechercheClient.Checked = false;
+                foreach (Commande commande in GetCommandeWithFilter())
+                {
+                    dataGridViewCommandes.Rows.Add(commande.idCommande, commande.date, commande.idClient);
+                }
+            }
+            else
+            {
+                dataGridViewCommandes.Rows.Clear();
+                labelNombreElements1.Text = "0".ToString();
+                foreach (Commande commande in GetCommandeWithFilter())
+                {
+                    dataGridViewCommandes.Rows.Add(commande.idCommande, commande.date, commande.idClient);
+                }
+            }
         }
 
-        private void dataGridViewCommandeByOne_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void checkBoxRechercheClient_CheckedChanged(object sender, EventArgs e)
         {
+            if (checkBoxRechercheClient.Checked)
+            {
+                dataGridViewCommandes.Rows.Clear();
+                checkBoxRechercheCommande.Checked = false;
+                foreach (Commande commande in GetCommandeWithFilter())
+                {
+                    dataGridViewCommandes.Rows.Add(commande.idCommande, commande.date, commande.idClient);
+                }
+                labelNombreElements1.Text = dataGridViewCommandes.Rows.Count.ToString();
+            }
+            else
+            {
+                dataGridViewCommandes.Rows.Clear();
+                foreach (Commande commande in GetCommandeWithFilter())
+                {
+                    dataGridViewCommandes.Rows.Add(commande.idCommande, commande.date, commande.idClient);
+                }
+                labelNombreElements1.Text = dataGridViewCommandes.Rows.Count.ToString();
+            }
+        }
+
+        private Collection<Commande> GetCommandeWithFilter()
+        {
+            CommandeManager.Base basicCommandeSQL = CommandeManager.Base.ALL;
+            CommandeManager.Specific filterCommandeSQL = CommandeManager.Specific.NOTHING;
+            var id = new int[1];
             
+            if (checkBoxTout.Checked)
+            {
+                basicCommandeSQL = CommandeManager.Base.ALL;
+            }
+
+            if (checkBoxAP.Checked)
+            {
+                basicCommandeSQL = CommandeManager.Base.EST_PAYEE;
+            }
+
+            if (checkBoxAE.Checked)
+            {
+                basicCommandeSQL = CommandeManager.Base.EST_EXPEDIEE;
+            }
+
+            if (checkBoxRechercheClient.Checked)
+            {
+                int.TryParse(textBoxRechercheClient.Text, out id[0]);
+                filterCommandeSQL = CommandeManager.Specific.CLIENT;
+            }
+
+            if (checkBoxRechercheCommande.Checked)
+            {
+                int.TryParse(textBoxRechercheCommande.Text, out id[0]);
+                filterCommandeSQL = CommandeManager.Specific.COMMANDE;
+            }
+
+            return CommandeManager.ReadWithFilters(basicCommandeSQL, filterCommandeSQL, id);
         }
     }
 }

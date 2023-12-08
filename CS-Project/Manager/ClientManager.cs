@@ -57,6 +57,7 @@ namespace CS_Project.Manager
             return client;
         }
 
+
         public static Collection<Client> ReadAllClient()
         {
             string query = "SELECT * FROM client"; // Commande SQL "SELECT"

@@ -27,7 +27,7 @@ namespace CS_Project.Manager
 
         public static Collection<LigneCommande> ReadAllCommandeByOne(int idCommande)
         {
-            string query = "SELECT * FROM lignecommande WHERE idCommande = @idCommande"; // Commande SQL "SELECT"
+            string query = "SELECT * FROM lignecommande WHERE commande = @idCommande"; // Commande SQL "SELECT"
             Collection<LigneCommande> commandeCollection = new Collection<LigneCommande>(); // Collection qui est une instance de type Collection
             DatabaseService.GetConnexion().Open(); // Ouverture de la connexion
 

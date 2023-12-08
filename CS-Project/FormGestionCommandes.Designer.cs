@@ -73,6 +73,8 @@ namespace CS_Project
             this.labelPaiementCommande = new System.Windows.Forms.Label();
             this.labelDateCommande = new System.Windows.Forms.Label();
             this.dataGridViewCommandeByOne = new System.Windows.Forms.DataGridView();
+            this.checkBoxRechercheClient = new System.Windows.Forms.CheckBox();
+            this.checkBoxRechercheCommande = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCommandes)).BeginInit();
             this.groupBoxClientInformations.SuspendLayout();
             this.groupBoxCommandeInformations.SuspendLayout();
@@ -226,6 +228,7 @@ namespace CS_Project
             this.labelCivilitee.Name = "labelCivilitee";
             this.labelCivilitee.Size = new System.Drawing.Size(44, 13);
             this.labelCivilitee.TabIndex = 0;
+            this.labelCivilitee.Tag = "civilite";
             this.labelCivilitee.Text = "civilité";
             this.labelCivilitee.Click += new System.EventHandler(this.labelCivilitee_Click);
             // 
@@ -250,7 +253,6 @@ namespace CS_Project
             this.groupBoxClientInformations.TabIndex = 26;
             this.groupBoxClientInformations.TabStop = false;
             this.groupBoxClientInformations.Text = "client";
-            this.groupBoxClientInformations.Enter += new System.EventHandler(this.groupBoxClientInformations_Enter);
             // 
             // labelTelephone1
             // 
@@ -390,6 +392,7 @@ namespace CS_Project
             // 
             this.labelGestionDesCommandes.AutoSize = true;
             this.labelGestionDesCommandes.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelGestionDesCommandes.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.labelGestionDesCommandes.Location = new System.Drawing.Point(366, 2);
             this.labelGestionDesCommandes.Name = "labelGestionDesCommandes";
             this.labelGestionDesCommandes.Size = new System.Drawing.Size(262, 24);
@@ -428,6 +431,7 @@ namespace CS_Project
             this.buttonValidExpedition.Text = "Ok";
             this.buttonValidExpedition.UseVisualStyleBackColor = true;
             this.buttonValidExpedition.Visible = false;
+            this.buttonValidExpedition.Click += new System.EventHandler(this.buttonValidExpedition_Click);
             // 
             // buttonValidPaiement
             // 
@@ -552,7 +556,26 @@ namespace CS_Project
             this.dataGridViewCommandeByOne.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
             this.dataGridViewCommandeByOne.Size = new System.Drawing.Size(258, 170);
             this.dataGridViewCommandeByOne.TabIndex = 31;
-            this.dataGridViewCommandeByOne.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCommandeByOne_CellContentClick);
+            // 
+            // checkBoxRechercheClient
+            // 
+            this.checkBoxRechercheClient.AutoSize = true;
+            this.checkBoxRechercheClient.Location = new System.Drawing.Point(935, 121);
+            this.checkBoxRechercheClient.Name = "checkBoxRechercheClient";
+            this.checkBoxRechercheClient.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxRechercheClient.TabIndex = 32;
+            this.checkBoxRechercheClient.UseVisualStyleBackColor = true;
+            this.checkBoxRechercheClient.CheckedChanged += new System.EventHandler(this.checkBoxRechercheClient_CheckedChanged);
+            // 
+            // checkBoxRechercheCommande
+            // 
+            this.checkBoxRechercheCommande.AutoSize = true;
+            this.checkBoxRechercheCommande.Location = new System.Drawing.Point(935, 189);
+            this.checkBoxRechercheCommande.Name = "checkBoxRechercheCommande";
+            this.checkBoxRechercheCommande.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxRechercheCommande.TabIndex = 33;
+            this.checkBoxRechercheCommande.UseVisualStyleBackColor = true;
+            this.checkBoxRechercheCommande.CheckedChanged += new System.EventHandler(this.checkBoxRechercheCommande_CheckedChanged);
             // 
             // FormGestionCommandes
             // 
@@ -560,6 +583,8 @@ namespace CS_Project
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(80)))), ((int)(((byte)(0)))));
             this.ClientSize = new System.Drawing.Size(964, 576);
+            this.Controls.Add(this.checkBoxRechercheCommande);
+            this.Controls.Add(this.checkBoxRechercheClient);
             this.Controls.Add(this.dataGridViewCommandeByOne);
             this.Controls.Add(this.groupBoxCommandeInformations);
             this.Controls.Add(this.labelGestionDesCommandes);
@@ -640,5 +665,7 @@ namespace CS_Project
         private Button buttonValidExpedition;
         private Button buttonValidPaiement;
         private DataGridView dataGridViewCommandeByOne;
+        private CheckBox checkBoxRechercheClient;
+        private CheckBox checkBoxRechercheCommande;
     }
 }
