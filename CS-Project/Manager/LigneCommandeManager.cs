@@ -43,8 +43,6 @@ namespace CS_Project.Manager
                     ligneCommande.idProduit = reader.GetInt32(0);
                     ligneCommande.idCommande = reader.GetInt32(1);
                     ligneCommande.quantite = reader.GetInt32(2);
-                    Console.WriteLine(reader.GetInt32(1));
-
                     commandeCollection.Add(ligneCommande); // Ajout de la commande à la liste
                 }
             }

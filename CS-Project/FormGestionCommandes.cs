@@ -4,6 +4,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace CS_Project
 {
@@ -24,6 +25,11 @@ namespace CS_Project
             }
         }
 
+        public static readonly Color foreColorCheck = Color.FromArgb(128, 0, 128);
+        public static readonly Color foreColorUncheck = Color.FromArgb(223, 80, 0);
+        public static readonly Color whiteColor = Color.FromArgb(242, 242, 248);
+        public static readonly Color blackColor = Color.FromArgb(27, 24, 17);
+
         private void menuButton_Click(object sender, EventArgs e)
         {
             FormMenu form2 = new FormMenu();
@@ -35,7 +41,17 @@ namespace CS_Project
 
         private void GestionCommandes_Load(object sender, EventArgs e)
         {
+            dataGridViewCommandes.ColumnCount = 3;
+            dataGridViewCommandes.ColumnHeadersVisible = true;
+            dataGridViewCommandes.Columns[0].Name = "idCommande";
+            dataGridViewCommandes.Columns[1].Name = "date";
+            dataGridViewCommandes.Columns[2].Name = "client";
 
+            dataGridViewCommandes.ColumnCount = 3;
+            dataGridViewCommandes.ColumnHeadersVisible = true;
+            dataGridViewCommandes.Columns[0].Name = "idCommande";
+            dataGridViewCommandes.Columns[1].Name = "date";
+            dataGridViewCommandes.Columns[2].Name = "client";
         }
 
         private void checkBoxTout_CheckedChanged(object sender, EventArgs e)
@@ -44,28 +60,19 @@ namespace CS_Project
             {
                 checkBoxAP.Checked = false;
                 checkBoxAE.Checked = false;
-
-                dataGridViewCommandes.ColumnCount = 3;
-                dataGridViewCommandes.ColumnHeadersVisible = true;
-
-                dataGridViewCommandes.Columns[0].Name = "idCommande";
-                dataGridViewCommandes.Columns[1].Name = "date";
-                dataGridViewCommandes.Columns[2].Name = "client";
+                dataGridViewCommandes.Rows.Clear();
 
                 foreach (Commande commande in GetCommandeWithFilter())
                 {
                     dataGridViewCommandes.Rows.Add(commande.idCommande, commande.date, commande.idClient);
                 }
-
                 labelNombreElements1.Text = dataGridViewCommandes.Rows.Count.ToString();
             }
-
             else
             {
                 dataGridViewCommandes.Rows.Clear();
                 labelNombreElements1.Text = "0".ToString();
             }
-
         }
 
         private void checkBoxAP_CheckedChanged(object sender, EventArgs e)
@@ -74,22 +81,14 @@ namespace CS_Project
             {
                 checkBoxTout.Checked = false;
                 checkBoxAE.Checked = false;
-
-                dataGridViewCommandes.ColumnCount = 3;
-                dataGridViewCommandes.ColumnHeadersVisible = true;
-
-                dataGridViewCommandes.Columns[0].Name = "idCommande";
-                dataGridViewCommandes.Columns[1].Name = "date";
-                dataGridViewCommandes.Columns[2].Name = "client";
+                dataGridViewCommandes.Rows.Clear();
 
                 foreach (Commande commande in GetCommandeWithFilter())
                 {
                     dataGridViewCommandes.Rows.Add(commande.idCommande, commande.date, commande.idClient);
                 }
-
                 labelNombreElements1.Text = dataGridViewCommandes.Rows.Count.ToString();
             }
-
             else
             {
                 dataGridViewCommandes.Rows.Clear();
@@ -103,22 +102,14 @@ namespace CS_Project
             {
                 checkBoxTout.Checked = false;
                 checkBoxAP.Checked = false;
-
-                dataGridViewCommandes.ColumnCount = 3;
-                dataGridViewCommandes.ColumnHeadersVisible = true;
-
-                dataGridViewCommandes.Columns[0].Name = "idCommande";
-                dataGridViewCommandes.Columns[1].Name = "date";
-                dataGridViewCommandes.Columns[2].Name = "client";
+                dataGridViewCommandes.Rows.Clear();
 
                 foreach (Commande commande in GetCommandeWithFilter())
                 {
                     dataGridViewCommandes.Rows.Add(commande.idCommande, commande.date, commande.idClient);
                 }
-
                 labelNombreElements1.Text = dataGridViewCommandes.Rows.Count.ToString();
             }
-
             else
             {
                 dataGridViewCommandes.Rows.Clear();
@@ -126,54 +117,14 @@ namespace CS_Project
             }
         }
 
-        private void labelCivilitee_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void labelColisage_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void labelNombreElements1_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void labelNombreElements_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void dataGridViewCommandes_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void labelGestionDesCommandes_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void labelInformationCommande_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void labelAdresseMail_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void dataGridViewCommandes_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             DataGridViewCell cell = dataGridViewCommandes.CurrentCell;
             DataGridViewRow row = dataGridViewCommandes.CurrentRow;
-   
+
             // Partie affichage du client
 
-            var clientCellValue = int.TryParse(dataGridViewCommandes.Rows[row.Index].Cells[2].Value.ToString(), out var clientCellValueOut);
+            int.TryParse(dataGridViewCommandes.Rows[row.Index].Cells[2].Value.ToString(), out var clientCellValueOut);
             Client client = ClientManager.Read(clientCellValueOut);
             labelCivilitee.Text = client.civilite;
             labelNom.Text = client.nom;
@@ -185,20 +136,16 @@ namespace CS_Project
             labelTelephone1.Text = client.tel;
 
             groupBoxClientInformations.Text = "Client n°" + client.idClient.ToString();
-
             groupBoxClientInformations.Tag = client;
-
 
             // Partie affichage de la commande
 
-            var commandeCellValue = int.TryParse(dataGridViewCommandes.Rows[row.Index].Cells[0].Value.ToString(), out var commandeCellValueOut);
+            int.TryParse(dataGridViewCommandes.Rows[row.Index].Cells[0].Value.ToString(), out var commandeCellValueOut);
             Commande commande = CommandeManager.Read(commandeCellValueOut);
             labelDateCommande1.Text = commande.date.ToString();
 
             groupBoxCommandeInformations.Text = "Commande n°" + commande.idCommande.ToString();
-
             groupBoxCommandeInformations.Tag = commande;
-
 
             // Partie affichage les bouttons de modification des paramètres "estPayee" et "estExpediee"
 
@@ -207,8 +154,7 @@ namespace CS_Project
                 pictureBoxPaiementValid.Hide();
                 pictureBoxPaiementInvalid.Show();
                 buttonValidPaiement.Show();
-            } 
-
+            }
 
             if (commande.estPayee == 1)
             {
@@ -218,20 +164,17 @@ namespace CS_Project
                 buttonValidPaiement.Hide();
             }
 
-
             if (commande.estExpediee == 0)
             {
                 pictureBoxExpeditionValid.Hide();
                 pictureBoxExpeditionInvalid.Show();
             }
 
-
             if (commande.estPayee == 1 && commande.estExpediee == 0)
             {
                 buttonValidPaiement.Hide();
                 buttonValidExpedition.Show();
             }
-
 
             if (commande.estExpediee == 1)
             {
@@ -243,34 +186,33 @@ namespace CS_Project
             // Partie affichage du GridView des commandes du même client
 
             dataGridViewCommandeByOne.Rows.Clear();
-
             dataGridViewCommandeByOne.ColumnCount = 2;
             dataGridViewCommandeByOne.ColumnHeadersVisible = true;
 
             dataGridViewCommandeByOne.Columns[0].Name = "Produit commandé";
             dataGridViewCommandeByOne.Columns[1].Name = "Quantité";
 
+            Collection<LigneCommande> ligneCommandes = LigneCommandeManager.ReadAllCommandeByOne(commandeCellValueOut);
+            foreach (LigneCommande ligneCommande in ligneCommandes)
+            {
+                dataGridViewCommandeByOne.Rows.Add(ligneCommande.idProduit, ligneCommande.quantite);
+            }
         }
 
-        private void pictureBoxPaiementValid_Click(object sender, EventArgs e)
+        public void dataGridViewCommandeByOne_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            
+            DataGridViewCell cell = dataGridViewCommandeByOne.CurrentCell;
+            DataGridViewRow row = dataGridViewCommandeByOne.CurrentRow;
+
+            // Partie affichage du client
+
+            int.TryParse(dataGridViewCommandeByOne.Rows[row.Index].Cells[1].Value.ToString(), out var produitCellValueOut);
+            Produit produit = ProduitManager.Read(produitCellValueOut);
+
+            FormProduitInfo FormProduitInfo = new FormProduitInfo(produit);
+            FormProduitInfo.Show();
         }
 
-        private void pictureBoxPaiementInvalid_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBoxExpeditionValid_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBoxExpeditionInvalid_Click(object sender, EventArgs e)
-        {
-
-        }
         private void buttonValidPaiement_Click(object sender, EventArgs e)
         {
             var commande = (Commande)groupBoxCommandeInformations.Tag;
@@ -284,7 +226,6 @@ namespace CS_Project
                 buttonValidPaiement.Show();
             }
 
-
             if (commande.estPayee == 1)
             {
                 pictureBoxPaiementValid.Show();
@@ -293,20 +234,17 @@ namespace CS_Project
                 buttonValidPaiement.Hide();
             }
 
-
             if (commande.estExpediee == 0)
             {
                 pictureBoxExpeditionValid.Hide();
                 pictureBoxExpeditionInvalid.Show();
             }
 
-
             if (commande.estPayee == 1 && commande.estExpediee == 0)
             {
                 buttonValidPaiement.Hide();
                 buttonValidExpedition.Show();
             }
-
 
             if (commande.estExpediee == 1)
             {
@@ -329,7 +267,6 @@ namespace CS_Project
                 buttonValidPaiement.Show();
             }
 
-
             if (commande.estPayee == 1)
             {
                 pictureBoxPaiementValid.Show();
@@ -338,20 +275,17 @@ namespace CS_Project
                 buttonValidPaiement.Hide();
             }
 
-
             if (commande.estExpediee == 0)
             {
                 pictureBoxExpeditionValid.Hide();
                 pictureBoxExpeditionInvalid.Show();
             }
 
-
             if (commande.estPayee == 1 && commande.estExpediee == 0)
             {
                 buttonValidPaiement.Hide();
                 buttonValidExpedition.Show();
             }
-
 
             if (commande.estExpediee == 1)
             {
@@ -360,8 +294,11 @@ namespace CS_Project
                 buttonValidExpedition.Hide();
             }
         }
+
         private void checkBoxRechercheCommande_CheckedChanged(object sender, EventArgs e)
         {
+            
+
             if (checkBoxRechercheCommande.Checked)
             {
                 dataGridViewCommandes.Rows.Clear();
@@ -379,6 +316,31 @@ namespace CS_Project
                 {
                     dataGridViewCommandes.Rows.Add(commande.idCommande, commande.date, commande.idClient);
                 }
+            }
+
+            if (textBoxRechercheCommande.TextLength > 0)
+            {
+                if (checkBoxRechercheCommande.Checked)
+                {
+                    textBoxRechercheCommande.BackColor = foreColorCheck; // Fond de la case "Recherche par commande"
+                    textBoxRechercheCommande.ForeColor = whiteColor; // Texte case "Recherche par commande"
+                    groupBoxCommandeInformations.ForeColor = foreColorCheck;
+                    groupBoxCommandeInformations.Text = "Commande (Recherche spécifique)";
+                    labelDateCommande.ForeColor = foreColorCheck;
+                    labelDateCommande1.ForeColor = foreColorCheck;
+                    labelPaiementCommande.ForeColor = foreColorCheck;
+                    labelExpeditionCommande.ForeColor = foreColorCheck;
+                }
+            }
+            if (checkBoxRechercheCommande.Checked == false)
+            {
+                textBoxRechercheCommande.BackColor = whiteColor; // Fond de la case "Recherche par commande"
+                textBoxRechercheCommande.ForeColor = blackColor; // Texte case "Recherche par commande"
+                groupBoxCommandeInformations.ForeColor = foreColorUncheck;
+                labelDateCommande.ForeColor = foreColorUncheck;
+                labelDateCommande1.ForeColor = foreColorUncheck;
+                labelPaiementCommande.ForeColor = foreColorUncheck;
+                labelExpeditionCommande.ForeColor = foreColorUncheck;
             }
         }
 
@@ -403,6 +365,44 @@ namespace CS_Project
                 }
                 labelNombreElements1.Text = dataGridViewCommandes.Rows.Count.ToString();
             }
+
+            if (textBoxRechercheClient.TextLength > 0)
+            {
+                if (checkBoxRechercheClient.Checked)
+                {
+                    textBoxRechercheClient.BackColor = foreColorCheck;
+                    textBoxRechercheClient.ForeColor = whiteColor;
+                    groupBoxClientInformations.ForeColor = foreColorCheck;
+                    groupBoxCommandeInformations.Text = "Commande (Recherche spécifique)";
+                    labelCivilitee.ForeColor = foreColorCheck;
+                    labelNom.ForeColor = foreColorCheck;
+                    labelPrenom.ForeColor = foreColorCheck;
+                    labelAdresse.ForeColor = foreColorCheck;
+                    labelCodePostale.ForeColor = foreColorCheck;
+                    labelVille.ForeColor = foreColorCheck;
+                    labelAdresseMail.ForeColor = foreColorCheck;
+                    labelAdresseMail1.ForeColor = foreColorCheck;
+                    labelTelephone.ForeColor = foreColorCheck;
+                    labelTelephone1.ForeColor = foreColorCheck;
+                }
+            }
+
+            if (checkBoxRechercheClient.Checked == false)
+            {
+                textBoxRechercheClient.BackColor = whiteColor;
+                textBoxRechercheClient.ForeColor = blackColor;
+                groupBoxClientInformations.ForeColor = foreColorUncheck;
+                labelCivilitee.ForeColor = foreColorUncheck;
+                labelNom.ForeColor = foreColorUncheck;
+                labelPrenom.ForeColor = foreColorUncheck;
+                labelAdresse.ForeColor = foreColorUncheck;
+                labelCodePostale.ForeColor = foreColorUncheck;
+                labelVille.ForeColor = foreColorUncheck;
+                labelAdresseMail.ForeColor = foreColorUncheck;
+                labelAdresseMail1.ForeColor = foreColorUncheck;
+                labelTelephone.ForeColor = foreColorUncheck;
+                labelTelephone1.ForeColor = foreColorUncheck;
+            }
         }
 
         private Collection<Commande> GetCommandeWithFilter()
@@ -410,7 +410,7 @@ namespace CS_Project
             CommandeManager.Base basicCommandeSQL = CommandeManager.Base.ALL;
             CommandeManager.Specific filterCommandeSQL = CommandeManager.Specific.NOTHING;
             var id = new int[1];
-            
+
             if (checkBoxTout.Checked)
             {
                 basicCommandeSQL = CommandeManager.Base.ALL;
