@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace CS_Project
 {
-    public partial class Login : Form
+    public partial class FormLogin : Form
     {
-        public Login()
+        public FormLogin()
         {
             InitializeComponent();
         }
@@ -25,7 +25,7 @@ namespace CS_Project
 
             if ((login == "fournier" && password == "1234") || (login == "hurier" && password == "5678"))
             {
-                Menu Menu = new Menu();
+                FormMenu Menu = new FormMenu();
                 Menu.Show();
                 this.Hide();
             }

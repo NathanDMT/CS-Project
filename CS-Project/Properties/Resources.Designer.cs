@@ -73,6 +73,26 @@ namespace CS_Project.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap etatNotOk {
+            get {
+                object obj = ResourceManager.GetObject("etatNotOk", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap etatOk {
+            get {
+                object obj = ResourceManager.GetObject("etatOk", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap logo_menagelec {
             get {
                 object obj = ResourceManager.GetObject("logo_menagelec", resourceCulture);
