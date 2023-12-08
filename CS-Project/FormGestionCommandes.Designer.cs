@@ -64,10 +64,6 @@ namespace CS_Project
             this.groupBoxCommandeInformations = new System.Windows.Forms.GroupBox();
             this.buttonValidExpedition = new System.Windows.Forms.Button();
             this.buttonValidPaiement = new System.Windows.Forms.Button();
-            this.pictureBoxExpeditionInvalid = new System.Windows.Forms.PictureBox();
-            this.pictureBoxPaiementInvalid = new System.Windows.Forms.PictureBox();
-            this.pictureBoxExpeditionValid = new System.Windows.Forms.PictureBox();
-            this.pictureBoxPaiementValid = new System.Windows.Forms.PictureBox();
             this.labelDateCommande1 = new System.Windows.Forms.Label();
             this.labelExpeditionCommande = new System.Windows.Forms.Label();
             this.labelPaiementCommande = new System.Windows.Forms.Label();
@@ -75,14 +71,18 @@ namespace CS_Project
             this.dataGridViewCommandeByOne = new System.Windows.Forms.DataGridView();
             this.checkBoxRechercheClient = new System.Windows.Forms.CheckBox();
             this.checkBoxRechercheCommande = new System.Windows.Forms.CheckBox();
+            this.pictureBoxExpeditionInvalid = new System.Windows.Forms.PictureBox();
+            this.pictureBoxPaiementInvalid = new System.Windows.Forms.PictureBox();
+            this.pictureBoxExpeditionValid = new System.Windows.Forms.PictureBox();
+            this.pictureBoxPaiementValid = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCommandes)).BeginInit();
             this.groupBoxClientInformations.SuspendLayout();
             this.groupBoxCommandeInformations.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCommandeByOne)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxExpeditionInvalid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPaiementInvalid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxExpeditionValid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPaiementValid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCommandeByOne)).BeginInit();
             this.SuspendLayout();
             // 
             // menuButton
@@ -97,6 +97,8 @@ namespace CS_Project
             // 
             // textBoxRechercheClient
             // 
+            this.textBoxRechercheClient.BackColor = System.Drawing.SystemColors.Menu;
+            this.textBoxRechercheClient.ForeColor = System.Drawing.Color.Black;
             this.textBoxRechercheClient.Location = new System.Drawing.Point(741, 118);
             this.textBoxRechercheClient.Name = "textBoxRechercheClient";
             this.textBoxRechercheClient.Size = new System.Drawing.Size(191, 20);
@@ -104,6 +106,8 @@ namespace CS_Project
             // 
             // textBoxRechercheCommande
             // 
+            this.textBoxRechercheCommande.BackColor = System.Drawing.SystemColors.Menu;
+            this.textBoxRechercheCommande.ForeColor = System.Drawing.Color.Black;
             this.textBoxRechercheCommande.Location = new System.Drawing.Point(741, 186);
             this.textBoxRechercheCommande.Name = "textBoxRechercheCommande";
             this.textBoxRechercheCommande.Size = new System.Drawing.Size(191, 20);
@@ -153,6 +157,8 @@ namespace CS_Project
             // 
             // dataGridViewCommandes
             // 
+            this.dataGridViewCommandes.AllowUserToAddRows = false;
+            this.dataGridViewCommandes.AllowUserToDeleteRows = false;
             this.dataGridViewCommandes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewCommandes.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridViewCommandes.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
@@ -161,10 +167,10 @@ namespace CS_Project
             this.dataGridViewCommandes.EnableHeadersVisualStyles = false;
             this.dataGridViewCommandes.Location = new System.Drawing.Point(23, 118);
             this.dataGridViewCommandes.Name = "dataGridViewCommandes";
+            this.dataGridViewCommandes.ReadOnly = true;
             this.dataGridViewCommandes.RowHeadersVisible = false;
             this.dataGridViewCommandes.Size = new System.Drawing.Size(238, 450);
             this.dataGridViewCommandes.TabIndex = 18;
-            this.dataGridViewCommandes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCommandes_CellContentClick);
             this.dataGridViewCommandes.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewCommandes_CellMouseClick);
             // 
             // labelNombreElements
@@ -175,7 +181,6 @@ namespace CS_Project
             this.labelNombreElements.Size = new System.Drawing.Size(103, 13);
             this.labelNombreElements.TabIndex = 20;
             this.labelNombreElements.Text = "Nombre d\'éléments :";
-            this.labelNombreElements.Click += new System.EventHandler(this.labelNombreElements_Click);
             // 
             // labelNombreElements1
             // 
@@ -185,7 +190,6 @@ namespace CS_Project
             this.labelNombreElements1.Size = new System.Drawing.Size(13, 13);
             this.labelNombreElements1.TabIndex = 21;
             this.labelNombreElements1.Text = "0";
-            this.labelNombreElements1.Click += new System.EventHandler(this.labelNombreElements1_Click);
             // 
             // labelClientRecherche
             // 
@@ -217,7 +221,6 @@ namespace CS_Project
             this.labelColisage.Size = new System.Drawing.Size(91, 20);
             this.labelColisage.TabIndex = 25;
             this.labelColisage.Text = "Documents";
-            this.labelColisage.Click += new System.EventHandler(this.labelColisage_Click);
             // 
             // labelCivilitee
             // 
@@ -230,7 +233,6 @@ namespace CS_Project
             this.labelCivilitee.TabIndex = 0;
             this.labelCivilitee.Tag = "civilite";
             this.labelCivilitee.Text = "civilité";
-            this.labelCivilitee.Click += new System.EventHandler(this.labelCivilitee_Click);
             // 
             // groupBoxClientInformations
             // 
@@ -297,7 +299,6 @@ namespace CS_Project
             this.labelAdresseMail.Size = new System.Drawing.Size(86, 13);
             this.labelAdresseMail.TabIndex = 6;
             this.labelAdresseMail.Text = "Adresse mail :";
-            this.labelAdresseMail.Click += new System.EventHandler(this.labelAdresseMail_Click);
             // 
             // labelVille
             // 
@@ -375,7 +376,6 @@ namespace CS_Project
             this.labelInformationCommande.Size = new System.Drawing.Size(313, 20);
             this.labelInformationCommande.TabIndex = 27;
             this.labelInformationCommande.Text = "Informations de la commande sélectionnée";
-            this.labelInformationCommande.Click += new System.EventHandler(this.labelInformationCommande_Click);
             // 
             // labelRechercheSpecifique
             // 
@@ -398,7 +398,6 @@ namespace CS_Project
             this.labelGestionDesCommandes.Size = new System.Drawing.Size(262, 24);
             this.labelGestionDesCommandes.TabIndex = 29;
             this.labelGestionDesCommandes.Text = "Gestionnaire des commandes";
-            this.labelGestionDesCommandes.Click += new System.EventHandler(this.labelGestionDesCommandes_Click);
             // 
             // groupBoxCommandeInformations
             // 
@@ -443,46 +442,6 @@ namespace CS_Project
             this.buttonValidPaiement.UseVisualStyleBackColor = true;
             this.buttonValidPaiement.Visible = false;
             this.buttonValidPaiement.Click += new System.EventHandler(this.buttonValidPaiement_Click);
-            // 
-            // pictureBoxExpeditionInvalid
-            // 
-            this.pictureBoxExpeditionInvalid.Image = global::CS_Project.Properties.Resources.etatNotOk;
-            this.pictureBoxExpeditionInvalid.Location = new System.Drawing.Point(102, 73);
-            this.pictureBoxExpeditionInvalid.Name = "pictureBoxExpeditionInvalid";
-            this.pictureBoxExpeditionInvalid.Size = new System.Drawing.Size(14, 13);
-            this.pictureBoxExpeditionInvalid.TabIndex = 8;
-            this.pictureBoxExpeditionInvalid.TabStop = false;
-            this.pictureBoxExpeditionInvalid.Click += new System.EventHandler(this.pictureBoxExpeditionInvalid_Click);
-            // 
-            // pictureBoxPaiementInvalid
-            // 
-            this.pictureBoxPaiementInvalid.Image = global::CS_Project.Properties.Resources.etatNotOk;
-            this.pictureBoxPaiementInvalid.Location = new System.Drawing.Point(102, 47);
-            this.pictureBoxPaiementInvalid.Name = "pictureBoxPaiementInvalid";
-            this.pictureBoxPaiementInvalid.Size = new System.Drawing.Size(14, 13);
-            this.pictureBoxPaiementInvalid.TabIndex = 6;
-            this.pictureBoxPaiementInvalid.TabStop = false;
-            this.pictureBoxPaiementInvalid.Click += new System.EventHandler(this.pictureBoxPaiementInvalid_Click);
-            // 
-            // pictureBoxExpeditionValid
-            // 
-            this.pictureBoxExpeditionValid.Image = global::CS_Project.Properties.Resources.etatOk;
-            this.pictureBoxExpeditionValid.Location = new System.Drawing.Point(102, 73);
-            this.pictureBoxExpeditionValid.Name = "pictureBoxExpeditionValid";
-            this.pictureBoxExpeditionValid.Size = new System.Drawing.Size(14, 13);
-            this.pictureBoxExpeditionValid.TabIndex = 5;
-            this.pictureBoxExpeditionValid.TabStop = false;
-            this.pictureBoxExpeditionValid.Click += new System.EventHandler(this.pictureBoxExpeditionValid_Click);
-            // 
-            // pictureBoxPaiementValid
-            // 
-            this.pictureBoxPaiementValid.Image = global::CS_Project.Properties.Resources.etatOk;
-            this.pictureBoxPaiementValid.Location = new System.Drawing.Point(102, 47);
-            this.pictureBoxPaiementValid.Name = "pictureBoxPaiementValid";
-            this.pictureBoxPaiementValid.Size = new System.Drawing.Size(14, 13);
-            this.pictureBoxPaiementValid.TabIndex = 4;
-            this.pictureBoxPaiementValid.TabStop = false;
-            this.pictureBoxPaiementValid.Click += new System.EventHandler(this.pictureBoxPaiementValid_Click);
             // 
             // labelDateCommande1
             // 
@@ -536,6 +495,7 @@ namespace CS_Project
             // 
             this.dataGridViewCommandeByOne.AllowUserToAddRows = false;
             this.dataGridViewCommandeByOne.AllowUserToDeleteRows = false;
+            this.dataGridViewCommandeByOne.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewCommandeByOne.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dataGridViewCommandeByOne.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewCommandeByOne.ColumnHeadersVisible = false;
@@ -552,10 +512,12 @@ namespace CS_Project
             this.dataGridViewCommandeByOne.GridColor = System.Drawing.SystemColors.ActiveBorder;
             this.dataGridViewCommandeByOne.Location = new System.Drawing.Point(370, 398);
             this.dataGridViewCommandeByOne.Name = "dataGridViewCommandeByOne";
+            this.dataGridViewCommandeByOne.ReadOnly = true;
             this.dataGridViewCommandeByOne.RowHeadersVisible = false;
             this.dataGridViewCommandeByOne.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
             this.dataGridViewCommandeByOne.Size = new System.Drawing.Size(258, 170);
             this.dataGridViewCommandeByOne.TabIndex = 31;
+            this.dataGridViewCommandeByOne.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewCommandeByOne_CellMouseClick);
             // 
             // checkBoxRechercheClient
             // 
@@ -576,6 +538,42 @@ namespace CS_Project
             this.checkBoxRechercheCommande.TabIndex = 33;
             this.checkBoxRechercheCommande.UseVisualStyleBackColor = true;
             this.checkBoxRechercheCommande.CheckedChanged += new System.EventHandler(this.checkBoxRechercheCommande_CheckedChanged);
+            // 
+            // pictureBoxExpeditionInvalid
+            // 
+            this.pictureBoxExpeditionInvalid.Image = global::CS_Project.Properties.Resources.etatNotOk;
+            this.pictureBoxExpeditionInvalid.Location = new System.Drawing.Point(102, 73);
+            this.pictureBoxExpeditionInvalid.Name = "pictureBoxExpeditionInvalid";
+            this.pictureBoxExpeditionInvalid.Size = new System.Drawing.Size(14, 13);
+            this.pictureBoxExpeditionInvalid.TabIndex = 8;
+            this.pictureBoxExpeditionInvalid.TabStop = false;
+            // 
+            // pictureBoxPaiementInvalid
+            // 
+            this.pictureBoxPaiementInvalid.Image = global::CS_Project.Properties.Resources.etatNotOk;
+            this.pictureBoxPaiementInvalid.Location = new System.Drawing.Point(102, 47);
+            this.pictureBoxPaiementInvalid.Name = "pictureBoxPaiementInvalid";
+            this.pictureBoxPaiementInvalid.Size = new System.Drawing.Size(14, 13);
+            this.pictureBoxPaiementInvalid.TabIndex = 6;
+            this.pictureBoxPaiementInvalid.TabStop = false;
+            // 
+            // pictureBoxExpeditionValid
+            // 
+            this.pictureBoxExpeditionValid.Image = global::CS_Project.Properties.Resources.etatOk;
+            this.pictureBoxExpeditionValid.Location = new System.Drawing.Point(102, 73);
+            this.pictureBoxExpeditionValid.Name = "pictureBoxExpeditionValid";
+            this.pictureBoxExpeditionValid.Size = new System.Drawing.Size(14, 13);
+            this.pictureBoxExpeditionValid.TabIndex = 5;
+            this.pictureBoxExpeditionValid.TabStop = false;
+            // 
+            // pictureBoxPaiementValid
+            // 
+            this.pictureBoxPaiementValid.Image = global::CS_Project.Properties.Resources.etatOk;
+            this.pictureBoxPaiementValid.Location = new System.Drawing.Point(102, 47);
+            this.pictureBoxPaiementValid.Name = "pictureBoxPaiementValid";
+            this.pictureBoxPaiementValid.Size = new System.Drawing.Size(14, 13);
+            this.pictureBoxPaiementValid.TabIndex = 4;
+            this.pictureBoxPaiementValid.TabStop = false;
             // 
             // FormGestionCommandes
             // 
@@ -613,11 +611,11 @@ namespace CS_Project
             this.groupBoxClientInformations.PerformLayout();
             this.groupBoxCommandeInformations.ResumeLayout(false);
             this.groupBoxCommandeInformations.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCommandeByOne)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxExpeditionInvalid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPaiementInvalid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxExpeditionValid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPaiementValid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCommandeByOne)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

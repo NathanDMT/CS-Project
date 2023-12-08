@@ -38,6 +38,31 @@ namespace CS_Project.Manager
             DatabaseService.GetConnexion().Close(); // Fermeture de la connexion
         }
 
+        public static Produit Read(int idProduit)
+        {
+            string query = "SELECT * FROM produit WHERE idProduit = @idProduit";
+            DatabaseService.GetConnexion().Open(); // Ouverture de la connexion
+
+            MySqlCommand readProduit = new MySqlCommand(query, DatabaseService.GetConnexion()); // Création de la commande
+            readProduit.Parameters.AddWithValue("@idProduit", idProduit);
+
+            Produit produit = new Produit();
+            MySqlDataReader reader = readProduit.ExecuteReader();
+            while (reader.Read())
+            {
+                produit.idProduit = reader.GetInt32(0);
+                produit.designation = reader.GetString(1);
+                produit.description = reader.GetString(2);
+                produit.dateAjout = reader.GetDateTime(3);
+                produit.qte = reader.GetInt32(4);
+                produit.prix = reader.GetString(5);
+                produit.fichierImage = reader.GetString(6);
+                produit.pk_fournisseur = reader.GetString(7);
+            }
+            DatabaseService.GetConnexion().Close(); // Fermeture de la connexion
+            return produit;
+        }
+
         public static Collection<Produit> ReadAllProduit()
         {
             string query = "SELECT * FROM produit"; // Commande SQL "SELECT"
