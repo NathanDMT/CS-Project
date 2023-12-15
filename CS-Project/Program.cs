@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using QuestPDF.Fluent;
+using QuestPDF.Helpers;
+using QuestPDF.Infrastructure;
 
 namespace CS_Project
 {
@@ -16,6 +19,8 @@ namespace CS_Project
         static void Main()
         {
             DatabaseService.InitializeConnection();
+
+            QuestPDF.Settings.License = LicenseType.Community;
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

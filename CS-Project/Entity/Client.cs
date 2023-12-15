@@ -10,7 +10,7 @@ namespace CS_Project.Entity
         public string prenom { get; set; }
         public string adresse { get; set; }
         public string ville { get; set; }
-        public int cp { get; set; }
+        public string cp { get; set; }
         public string mail { get; set; }
         public string tel { get; set; }
     }

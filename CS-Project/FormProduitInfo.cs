@@ -23,7 +23,7 @@ namespace CS_Project
 
             labelNomProduit.Text = produit.designation;
             labelDescriptionProduit.Text = produit.description;
-            labelPrix1.Text = produit.prix;
+            labelPrix1.Text = produit.prix + "€";
             pictureBoxProduit.Image = ResourceService.GetProductImage(produit.fichierImage);
         }
     }

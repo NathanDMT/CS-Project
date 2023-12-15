@@ -49,7 +49,7 @@ namespace CS_Project.Manager
                 client.prenom = reader.GetString(3);
                 client.adresse = reader.GetString(4);
                 client.ville = reader.GetString(5);
-                client.cp = reader.GetInt32(6);
+                client.cp = reader.GetString(6);
                 client.mail = reader.GetString(7);
                 client.tel = reader.GetString(8);
             }
@@ -78,7 +78,7 @@ namespace CS_Project.Manager
                     client.prenom = reader.GetString(3);
                     client.adresse = reader.GetString(4);
                     client.ville = reader.GetString(5);
-                    client.cp = reader.GetInt32(6);
+                    client.cp = reader.GetString(6);
                     client.mail = reader.GetString(7);
                     client.tel = reader.GetString(8);
 

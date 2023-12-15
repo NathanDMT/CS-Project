@@ -5,6 +5,9 @@ using System.Collections.ObjectModel;
 using System.Data;
 using System.Windows.Forms;
 using System.Drawing;
+using QuestPDF.Fluent;
+using QuestPDF.Helpers;
+using QuestPDF.Infrastructure;
 
 namespace CS_Project
 {
@@ -13,6 +16,9 @@ namespace CS_Project
         public FormGestionCommandes()
         {
             InitializeComponent();
+
+            labelRechercheCommandeSpecifique.Visible = false;
+            labelRechercheClientSpecifique.Visible = false;
 
             this.FormClosing += GestionCommandes_Load_FormClosing;
         }
@@ -33,9 +39,7 @@ namespace CS_Project
         private void menuButton_Click(object sender, EventArgs e)
         {
             FormMenu form2 = new FormMenu();
-
             form2.Show();
-
             this.Hide();
         }
 
@@ -149,6 +153,9 @@ namespace CS_Project
 
             // Partie affichage les bouttons de modification des paramètres "estPayee" et "estExpediee"
 
+            buttonValidPaiement.Hide();
+            buttonValidExpedition.Hide();
+
             if (commande.estPayee == 0)
             {
                 pictureBoxPaiementValid.Hide();
@@ -197,6 +204,8 @@ namespace CS_Project
             {
                 dataGridViewCommandeByOne.Rows.Add(ligneCommande.idProduit, ligneCommande.quantite);
             }
+
+            dataGridViewCommandeByOne.Tag = ligneCommandes;
         }
 
         public void dataGridViewCommandeByOne_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -206,7 +215,7 @@ namespace CS_Project
 
             // Partie affichage du client
 
-            int.TryParse(dataGridViewCommandeByOne.Rows[row.Index].Cells[1].Value.ToString(), out var produitCellValueOut);
+            int.TryParse(dataGridViewCommandeByOne.Rows[row.Index].Cells[0].Value.ToString(), out var produitCellValueOut);
             Produit produit = ProduitManager.Read(produitCellValueOut);
 
             FormProduitInfo FormProduitInfo = new FormProduitInfo(produit);
@@ -297,7 +306,7 @@ namespace CS_Project
 
         private void checkBoxRechercheCommande_CheckedChanged(object sender, EventArgs e)
         {
-            
+
 
             if (checkBoxRechercheCommande.Checked)
             {
@@ -324,8 +333,8 @@ namespace CS_Project
                 {
                     textBoxRechercheCommande.BackColor = foreColorCheck; // Fond de la case "Recherche par commande"
                     textBoxRechercheCommande.ForeColor = whiteColor; // Texte case "Recherche par commande"
+                    labelRechercheCommandeSpecifique.Visible = true;
                     groupBoxCommandeInformations.ForeColor = foreColorCheck;
-                    groupBoxCommandeInformations.Text = "Commande (Recherche spécifique)";
                     labelDateCommande.ForeColor = foreColorCheck;
                     labelDateCommande1.ForeColor = foreColorCheck;
                     labelPaiementCommande.ForeColor = foreColorCheck;
@@ -336,6 +345,7 @@ namespace CS_Project
             {
                 textBoxRechercheCommande.BackColor = whiteColor; // Fond de la case "Recherche par commande"
                 textBoxRechercheCommande.ForeColor = blackColor; // Texte case "Recherche par commande"
+                labelRechercheCommandeSpecifique.Visible = false;
                 groupBoxCommandeInformations.ForeColor = foreColorUncheck;
                 labelDateCommande.ForeColor = foreColorUncheck;
                 labelDateCommande1.ForeColor = foreColorUncheck;
@@ -373,7 +383,7 @@ namespace CS_Project
                     textBoxRechercheClient.BackColor = foreColorCheck;
                     textBoxRechercheClient.ForeColor = whiteColor;
                     groupBoxClientInformations.ForeColor = foreColorCheck;
-                    groupBoxCommandeInformations.Text = "Commande (Recherche spécifique)";
+                    labelRechercheClientSpecifique.Visible = true;
                     labelCivilitee.ForeColor = foreColorCheck;
                     labelNom.ForeColor = foreColorCheck;
                     labelPrenom.ForeColor = foreColorCheck;
@@ -392,6 +402,7 @@ namespace CS_Project
                 textBoxRechercheClient.BackColor = whiteColor;
                 textBoxRechercheClient.ForeColor = blackColor;
                 groupBoxClientInformations.ForeColor = foreColorUncheck;
+                labelRechercheClientSpecifique.Visible = false;
                 labelCivilitee.ForeColor = foreColorUncheck;
                 labelNom.ForeColor = foreColorUncheck;
                 labelPrenom.ForeColor = foreColorUncheck;
@@ -439,6 +450,82 @@ namespace CS_Project
             }
 
             return CommandeManager.ReadWithFilters(basicCommandeSQL, filterCommandeSQL, id);
+        }
+
+        private void buttonColisage_Click(object sender, EventArgs e)
+        {
+            if ((checkBoxTout.Checked == true) || (checkBoxAP.Checked == true) || (checkBoxAE.Checked == true))
+            {
+                if ((dataGridViewCommandeByOne.CurrentCell != null))
+                {
+                    var commande = (Commande)groupBoxCommandeInformations.Tag;
+                    var ligneCommandes = (Collection<LigneCommande>)dataGridViewCommandeByOne.Tag;
+
+                    Document.Create(container =>
+                    {
+                        container.Page(page =>
+                        {
+                            int incrementValue = 0;
+
+                            page.Size(PageSizes.A4);
+                            page.Margin(2, Unit.Centimetre);
+                            page.PageColor(Colors.White);
+
+                            page.Header()
+                               .AlignCenter()
+                               .Text($"Liste de colisage de la commande n°{commande.idCommande} :")
+                               .Bold().FontColor(Colors.Blue.Darken2).FontSize(16);
+
+
+                            page.Content()
+                                .AlignCenter()
+                                .PaddingVertical(1, Unit.Centimetre)
+                                .Column(x =>
+                                {
+                                    x.Spacing(20);
+                                    x.Item().Table(table =>
+                                    {
+                                        table.ColumnsDefinition(columns =>
+                                        {
+                                            columns.RelativeColumn();
+                                            columns.RelativeColumn();
+                                            columns.RelativeColumn();
+                                        });
+                                        table.Cell().Row(1).Column(1).Border(1).Padding(6).Text("Réf du produit").FontSize(12);
+                                        table.Cell().Row(1).Column(2).Border(1).Padding(6).Text("Désignation").FontSize(12);
+                                        table.Cell().Row(1).Column(3).Border(1).Padding(6).Text("Quantité").FontSize(12);
+
+                                        for (int i = 0; i < ligneCommandes.Count; i++)
+                                        {
+                                            var produit = ProduitManager.Read(ligneCommandes[i].idProduit);
+                                            table.Cell().Row((uint)(i + 2)).Column(1).Border(1).Padding(6).Text($"{ligneCommandes[i].idProduit}").FontSize(11);
+                                            table.Cell().Row((uint)(i + 2)).Column(2).Border(1).Padding(6).Text($"{produit.designation}").FontSize(11);
+                                            table.Cell().Row((uint)(i + 2)).Column(3).Border(1).Padding(6).Text($"{ligneCommandes[i].quantite}").FontSize(11);
+                                            incrementValue += ligneCommandes[i].quantite;
+                                        }
+                                    });
+                                    x.Item().AlignCenter().Text("Veillez à bien contrôler le contenu du colis à l'aide de cette liste devant le transporteur").FontColor("#F34235").FontSize(8);
+                                    x.Item().AlignCenter().Text($"Le colis contient {incrementValue} articles").FontSize(11);
+                                });
+
+                            page.Footer()
+                                .AlignCenter()
+                                .Text(x =>
+                                {
+                                    x.CurrentPageNumber();
+                                });
+                        });
+                    }).GeneratePdf($"pdf/colisage_n°{commande.idCommande}-{DateTime.Now:yyyy-MM-dd-HH-mm}.pdf");
+                }
+                else
+                {
+                    throw new Exception("Aucune commande n\'est séléctionné!");
+                }
+            }
+            else
+            {
+                throw new Exception("Aucune catégorie de commande n\'est séléctionné!");
+            }
         }
     }
 }
